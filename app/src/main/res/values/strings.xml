@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Qobley</string>
+    <string name="tagline">Every code. One place.</string>
+    <string name="shortcut_scan_short">Scan</string>
+    <string name="shortcut_scan_long">Scan Any Code</string>
+    <string name="shortcut_create_qr_short">Create QR</string>
+    <string name="shortcut_create_qr_long">Create QR Code</string>
+    <string name="shortcut_create_barcode_short">Barcode</string>
+    <string name="shortcut_create_barcode_long">Create Barcode</string>
+    <string name="shortcut_scan_image_short">Scan Image</string>
+    <string name="shortcut_scan_image_long">Scan Code from Image</string>
+    <string name="tile_scan_label">Qobley Scan</string>
+    <string name="widget_quick_scan_title">Qobley Quick Scan</string>
+    <string name="widget_small_title">Qobley 1×1 Quick Scan</string>
+    <string name="widget_small_desc">Instant one-tap camera barcode and QR scanner.</string>
+    <string name="widget_medium_title">Qobley Quick Access</string>
+    <string name="widget_medium_desc">Instant scan button, QR creator, Barcode creator, and Image scan.</string>
+    <string name="widget_large_title">Qobley Command Center</string>
+    <string name="widget_large_desc">Primary scanner, code creators, and recent library history.</string>
+</resources>

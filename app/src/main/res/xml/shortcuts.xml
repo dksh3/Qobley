@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="scan_code"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_scan_short"
+        android:shortcutLongLabel="@string/shortcut_scan_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.aistudio.qobley.xkvpq"
+            android:targetClass="com.example.MainActivity"
+            android:data="qobley://scan" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="create_qr"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_create_qr_short"
+        android:shortcutLongLabel="@string/shortcut_create_qr_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.aistudio.qobley.xkvpq"
+            android:targetClass="com.example.MainActivity"
+            android:data="qobley://create/qr" />
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="create_barcode"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_create_barcode_short"
+        android:shortcutLongLabel="@string/shortcut_create_barcode_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.aistudio.qobley.xkvpq"
+            android:targetClass="com.example.MainActivity"
+            android:data="qobley://create/barcode" />
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="scan_image"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_scan_image_short"
+        android:shortcutLongLabel="@string/shortcut_scan_image_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.aistudio.qobley.xkvpq"
+            android:targetClass="com.example.MainActivity"
+            android:data="qobley://scan/image" />
+    </shortcut>
+</shortcuts>

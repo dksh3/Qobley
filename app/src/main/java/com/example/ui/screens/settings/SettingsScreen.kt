@@ -1,0 +1,452 @@
+package com.example.ui.screens.settings
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Check
+import androidx.compose.material.icons.outlined.DeleteSweep
+import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Lock
+import androidx.compose.material.icons.outlined.Palette
+import androidx.compose.material.icons.outlined.QrCodeScanner
+import androidx.compose.material.icons.outlined.Sensors
+import androidx.compose.material.icons.outlined.Speed
+import androidx.compose.material.icons.outlined.VolumeUp
+import androidx.compose.material.icons.outlined.Widgets
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import com.example.MainViewModel
+import com.example.ui.components.QobleyTopBar
+
+@Composable
+fun SettingsScreen(
+    viewModel: MainViewModel,
+    modifier: Modifier = Modifier
+) {
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val vibrationEnabled by viewModel.settingsRepo.vibrationEnabled.collectAsState()
+    val soundEnabled by viewModel.settingsRepo.soundEnabled.collectAsState()
+    val duplicatePrevention by viewModel.settingsRepo.duplicatePrevention.collectAsState()
+    val launchScreen by viewModel.settingsRepo.launchScreen.collectAsState()
+    val themeMode by viewModel.settingsRepo.themeMode.collectAsState()
+
+    var showThemeDialog by remember { mutableStateOf(false) }
+    var showLaunchDialog by remember { mutableStateOf(false) }
+    var showClearHistoryDialog by remember { mutableStateOf(false) }
+
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+    ) {
+        QobleyTopBar(title = "Settings")
+
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.TopCenter
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .widthIn(max = 640.dp)
+                    .verticalScroll(rememberScrollState())
+                    .padding(horizontal = 20.dp, vertical = 8.dp)
+            ) {
+                // Scanning Section
+                SettingsCategoryHeader("Scanning")
+
+                SettingsSwitchItem(
+                    icon = Icons.Outlined.Sensors,
+                    title = "Vibrate on scan",
+                    subtitle = "Tactile pulse when a code is detected",
+                    checked = vibrationEnabled,
+                    testTag = "setting_vibrate_switch",
+                    onCheckedChange = { viewModel.settingsRepo.setVibrationEnabled(it) }
+                )
+
+                SettingsSwitchItem(
+                    icon = Icons.Outlined.VolumeUp,
+                    title = "Sound feedback",
+                    subtitle = "Gentle tone on detection",
+                    checked = soundEnabled,
+                    testTag = "setting_sound_switch",
+                    onCheckedChange = { viewModel.settingsRepo.setSoundEnabled(it) }
+                )
+
+                SettingsSwitchItem(
+                    icon = Icons.Outlined.QrCodeScanner,
+                    title = "Prevent duplicate scans",
+                    subtitle = "Ignore repeated scans within 2 seconds",
+                    checked = duplicatePrevention,
+                    testTag = "setting_duplicate_switch",
+                    onCheckedChange = { viewModel.settingsRepo.setDuplicatePrevention(it) }
+                )
+
+                Spacer(modifier = Modifier.height(24.dp))
+
+                // Appearance Section
+                SettingsCategoryHeader("Appearance")
+
+                SettingsClickableItem(
+                    icon = Icons.Outlined.Palette,
+                    title = "Theme",
+                    subtitle = when (themeMode) {
+                        "light" -> "Light"
+                        "dark" -> "Dark"
+                        else -> "System default"
+                    },
+                    testTag = "setting_theme_item",
+                    onClick = { showThemeDialog = true }
+                )
+
+                Spacer(modifier = Modifier.height(24.dp))
+
+                // Quick Access Section
+                SettingsCategoryHeader("Quick Access")
+
+                SettingsClickableItem(
+                    icon = Icons.Outlined.Speed,
+                    title = "Open on launch",
+                    subtitle = when (launchScreen) {
+                        "scanner" -> "Scanner"
+                        "create" -> "Create"
+                        else -> "Home screen"
+                    },
+                    testTag = "setting_launch_item",
+                    onClick = { showLaunchDialog = true }
+                )
+
+                SettingsClickableItem(
+                    icon = Icons.Outlined.Widgets,
+                    title = "Home Screen Widgets & Shortcuts",
+                    subtitle = "Quick scan 1×1, Quick access, and Command center widgets are available on your home screen",
+                    testTag = "setting_widgets_info_item",
+                    onClick = {
+                        val ctx = context
+                        com.example.widget.QobleyWidgetUpdater.updateAllWidgets(ctx)
+                        viewModel.showToast("Home screen widgets refreshed")
+                    }
+                )
+
+                SettingsInfoItem(
+                    icon = Icons.Outlined.Sensors,
+                    title = "Quick Settings & App Shortcuts",
+                    subtitle = "Long-press the Qobley app icon on your home screen for instant shortcuts, or add the 'Qobley Scan' tile to Android Quick Settings."
+                )
+
+                Spacer(modifier = Modifier.height(24.dp))
+
+                // Privacy Section
+                SettingsCategoryHeader("Privacy & Data")
+
+                SettingsClickableItem(
+                    icon = Icons.Outlined.DeleteSweep,
+                    title = "Clear scan history",
+                    subtitle = "Remove past scans from device history",
+                    testTag = "setting_clear_history_item",
+                    onClick = { showClearHistoryDialog = true }
+                )
+
+                SettingsInfoItem(
+                    icon = Icons.Outlined.Lock,
+                    title = "100% On-Device",
+                    subtitle = "All camera processing, decoding, and saved codes remain entirely local to your device with zero cloud tracking or telemetry."
+                )
+
+                Spacer(modifier = Modifier.height(24.dp))
+
+                // About Section
+                SettingsCategoryHeader("About")
+
+                SettingsInfoItem(
+                    icon = Icons.Outlined.Info,
+                    title = "Qobley 1.0",
+                    subtitle = "Every code. One place. Universal QR, barcode, and document utility."
+                )
+
+                Spacer(modifier = Modifier.height(48.dp))
+            }
+        }
+    }
+
+    // Theme selector dialog
+    if (showThemeDialog) {
+        AlertDialog(
+            onDismissRequest = { showThemeDialog = false },
+            title = { Text("Choose Theme") },
+            text = {
+                Column {
+                    listOf("system" to "System default", "light" to "Light", "dark" to "Dark").forEach { (key, label) ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable {
+                                    viewModel.settingsRepo.setThemeMode(key)
+                                    showThemeDialog = false
+                                }
+                                .padding(vertical = 12.dp, horizontal = 4.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = label,
+                                style = MaterialTheme.typography.bodyLarge,
+                                fontWeight = if (themeMode == key) FontWeight.SemiBold else FontWeight.Normal,
+                                modifier = Modifier.weight(1f)
+                            )
+                            if (themeMode == key) {
+                                Icon(
+                                    imageVector = Icons.Outlined.Check,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.primary,
+                                    modifier = Modifier.size(20.dp)
+                                )
+                            }
+                        }
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = { showThemeDialog = false }) {
+                    Text("Cancel")
+                }
+            }
+        )
+    }
+
+    // Launch behavior dialog
+    if (showLaunchDialog) {
+        AlertDialog(
+            onDismissRequest = { showLaunchDialog = false },
+            title = { Text("Open on Launch") },
+            text = {
+                Column {
+                    listOf("home" to "Home screen", "scanner" to "Scanner", "create" to "Create").forEach { (key, label) ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable {
+                                    viewModel.settingsRepo.setLaunchScreen(key)
+                                    showLaunchDialog = false
+                                }
+                                .padding(vertical = 12.dp, horizontal = 4.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = label,
+                                style = MaterialTheme.typography.bodyLarge,
+                                fontWeight = if (launchScreen == key) FontWeight.SemiBold else FontWeight.Normal,
+                                modifier = Modifier.weight(1f)
+                            )
+                            if (launchScreen == key) {
+                                Icon(
+                                    imageVector = Icons.Outlined.Check,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.primary,
+                                    modifier = Modifier.size(20.dp)
+                                )
+                            }
+                        }
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = { showLaunchDialog = false }) {
+                    Text("Cancel")
+                }
+            }
+        )
+    }
+
+    // Clear history confirmation dialog
+    if (showClearHistoryDialog) {
+        AlertDialog(
+            onDismissRequest = { showClearHistoryDialog = false },
+            title = { Text("Clear History") },
+            text = { Text("Are you sure you want to delete all scan history? Your saved library items will not be affected.") },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        viewModel.clearHistory()
+                        showClearHistoryDialog = false
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
+                ) {
+                    Text("Clear")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showClearHistoryDialog = false }) {
+                    Text("Cancel")
+                }
+            }
+        )
+    }
+}
+
+@Composable
+private fun SettingsCategoryHeader(title: String) {
+    Text(
+        text = title,
+        style = MaterialTheme.typography.labelMedium,
+        fontWeight = FontWeight.SemiBold,
+        color = MaterialTheme.colorScheme.secondary,
+        modifier = Modifier.padding(vertical = 8.dp)
+    )
+}
+
+@Composable
+private fun SettingsSwitchItem(
+    icon: ImageVector,
+    title: String,
+    subtitle: String,
+    checked: Boolean,
+    testTag: String,
+    onCheckedChange: (Boolean) -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onCheckedChange(!checked) }
+            .padding(vertical = 12.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.size(22.dp)
+        )
+        Spacer(modifier = Modifier.width(16.dp))
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.Medium
+            )
+            Text(
+                text = subtitle,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+        Switch(
+            checked = checked,
+            onCheckedChange = onCheckedChange,
+            colors = SwitchDefaults.colors(
+                checkedThumbColor = MaterialTheme.colorScheme.primary,
+                checkedTrackColor = MaterialTheme.colorScheme.primaryContainer
+            ),
+            modifier = Modifier.testTag(testTag)
+        )
+    }
+    HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.35f))
+}
+
+@Composable
+private fun SettingsClickableItem(
+    icon: ImageVector,
+    title: String,
+    subtitle: String,
+    testTag: String,
+    onClick: () -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick)
+            .padding(vertical = 12.dp)
+            .testTag(testTag),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.size(22.dp)
+        )
+        Spacer(modifier = Modifier.width(16.dp))
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.Medium
+            )
+            Text(
+                text = subtitle,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+    HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.35f))
+}
+
+@Composable
+private fun SettingsInfoItem(
+    icon: ImageVector,
+    title: String,
+    subtitle: String
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 12.dp),
+        verticalAlignment = Alignment.Top
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.size(22.dp).padding(top = 2.dp)
+        )
+        Spacer(modifier = Modifier.width(16.dp))
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.Medium
+            )
+            Spacer(modifier = Modifier.height(2.dp))
+            Text(
+                text = subtitle,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+    HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.35f))
+}
