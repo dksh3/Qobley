@@ -5,27 +5,27 @@
 <br/>
 <br/>
 
-# ⚡ Qobley
+# Qobley
 
-### **Every code. One place.**
+### Every code. One place.
 
 *An accessible, zero-friction Android Barcode, QR Code, and Home-Screen Quick Access Utility.*  
-**"Technology should leave no one behind."**
+**Technology should leave no one behind.**
 
 <br/>
 
-[![Hackathon Submission](https://img.shields.io/badge/%F0%9F%8F%86_Hackathon_Submission-Digital_Inclusion_%26_Accessibility-FF6B6B?style=for-the-badge)](#-why-qobley-was-built-technology-should-leave-no-one-behind)
-[![Direct APK Download](https://img.shields.io/badge/%F0%9F%93%A6_Direct_Download-app--debug.apk_(22MB)-22C55E?style=for-the-badge)](#-direct-apk-download)
-[![Platform](https://img.shields.io/badge/Platform-Android%208.0%2B%20(API%2024--36)-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://android.com)
-[![Language](https://img.shields.io/badge/Language-Kotlin%202.2-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)](https://kotlinlang.org)
-[![UI](https://img.shields.io/badge/UI-Jetpack%20Compose%20%2B%20Material%203-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white)](https://developer.android.com/jetpack/compose)
-[![Database](https://img.shields.io/badge/Database-Room%202.7%20SQLite-4285F4?style=for-the-badge&logo=sqlite&logoColor=white)](https://developer.android.com/training/data-storage/room)
-[![Privacy](https://img.shields.io/badge/Privacy-100%25%20Offline%20%26%20On--Device-10B981?style=for-the-badge&logo=shield&logoColor=white)](#-privacy--security)
-[![License: MIT](https://img.shields.io/badge/License-MIT-F59E0B.svg?style=for-the-badge)](LICENSE)
+[![Hackathon Submission](https://img.shields.io/badge/Hackathon_Submission-Digital_Inclusion_%26_Accessibility-blue)](#why-qobley-was-built-technology-should-leave-no-one-behind)
+[![Direct APK Download](https://img.shields.io/badge/Direct_Download-app--debug.apk_(22MB)-success)](#direct-apk-download)
+[![Platform](https://img.shields.io/badge/Platform-Android_8.0%2B_(API_24--36)-green)](https://android.com)
+[![Language](https://img.shields.io/badge/Language-Kotlin_2.2-purple)](https://kotlinlang.org)
+[![UI](https://img.shields.io/badge/UI-Jetpack_Compose_%2B_Material_3-blue)](https://developer.android.com/jetpack/compose)
+[![Database](https://img.shields.io/badge/Database-Room_2.7_SQLite-informational)](https://developer.android.com/training/data-storage/room)
+[![Privacy](https://img.shields.io/badge/Privacy-100%25_Offline_%26_On--Device-success)](#privacy-and-security)
+[![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
 
 <br/>
 
-[💖 **The Mission**](#-why-qobley-was-built-technology-should-leave-no-one-behind) • [📦 **Download APK**](#-direct-apk-download) • [📱 **Real App Screenshots**](#-real-android-app--widget-screenshots-no-ai-generated) • [🧩 **Widget Ecosystem**](#-android-widgets--accessibility-layer) • [🛠️ **All Technologies Used**](#%EF%B8%8F-all-technology-stack--dependencies) • [🧪 **Test Suite**](#-rigorous-testing--verification)
+[The Mission](#why-qobley-was-built-technology-should-leave-no-one-behind) | [Download APK](#direct-apk-download) | [Actual App Screenshots](#actual-application-and-widget-screenshots) | [Widget System](#android-widgets-and-accessibility-layer) | [Technology Stack](#technology-stack-and-architecture) | [Test Suite](#testing-and-verification)
 
 <br/>
 
@@ -33,15 +33,16 @@
 
 ---
 
-## 🏆 Hackathon Project Overview
+## Hackathon Project Submission
 
-> **Track:** Digital Inclusion, Universal Accessibility & Real-World Utility  
-> **Project Name:** Qobley  
-> **Core Concept:** A zero-friction Android quick-access utility that eliminates digital barriers for small shopkeepers, elderly users, and everyday citizens by bringing camera scanning and code generation directly to the device home screen and Quick Settings.
+* **Event Category:** Digital Inclusion, Universal Accessibility, and Everyday Utilities
+* **Project Name:** Qobley
+* **Problem Statement:** Eliminating the digital divide for elderly community shopkeepers by replacing complex multi-step scanning and generation apps with native home-screen widgets and one-tap quick-access surfaces.
+* **Core Solution:** A lightweight, 100% offline Android utility providing sub-18ms CameraX scanning, scannable home-screen widgets, and direct Quick Settings tiles.
 
 ---
 
-## 💖 Why Qobley Was Built: Technology Should Leave No One Behind
+## Why Qobley Was Built: Technology Should Leave No One Behind
 
 Every neighbourhood has a story.
 
@@ -57,12 +58,12 @@ And that's a problem worth addressing.
 
 We started Qobley with a simple belief: **technology should make everyday life easier, not create another barrier for people to overcome.**
 
-Qobley brings scanning, creating, and managing codes into one straightforward experience. Instead of making people navigate unnecessary complexity, splash screens, advertisements, or multi-step menus to complete a simple task, it gives them a tool that feels approachable, instant, and easy to use.
+Qobley brings scanning, creating, and managing codes into one straightforward experience. Instead of making people navigate unnecessary complexity to complete a simple task, it aims to give them a tool that feels approachable and easy to use.
 
 For a small shopkeeper, accessibility can matter just as much as functionality:
 * A shopkeeper can pin their **UPI payment QR** or **Store Wi-Fi** directly onto their phone's home screen so customers can scan it straight from the phone without waking or unlocking the full app.
-* An elderly citizen doesn't need to hunt through menus: a single tap on the **1×1 Quick Scan** widget opens the camera instantly, with high-contrast text and oversized touch targets.
-* For someone unfamiliar with digital tools, a clear and uncomplicated experience can make technology feel less intimidating. And for anyone who simply wants to get something done without extra hassle, simplicity makes all the difference.
+* An elderly citizen does not need to hunt through menus: a single tap on the **1x1 Quick Scan** widget opens the camera instantly, with high-contrast text and oversized touch targets.
+* For someone unfamiliar with digital tools, a clear and uncomplicated experience can make technology feel less intimidating. And for anyone who simply wants to get something done without extra hassle, simplicity makes a difference.
 
 Qobley isn't going to solve the digital divide on its own. We understand that meaningful digital inclusion takes more than an app. It takes education, accessible design, patient support, and a willingness to build technology around the people who use it.
 
@@ -78,185 +79,221 @@ Because progress shouldn't be measured only by how advanced technology becomes. 
 
 ---
 
-## 📦 Direct APK Download
+## Direct APK Download
 
-Click below to download the compiled Android APK directly to your phone or computer. **No redirects, no sign-ups, no external pages:**
+Download the compiled Android APK directly to test immediately on any physical phone or emulator with no redirects:
 
 <div align="center">
 
-### [⬇️ Click Here to Download: `app-debug.apk` (22 MB)](app-debug.apk)
-*(Mirror link: [`qobley-debug.apk`](qobley-debug.apk) • Build outputs: [`.build-outputs/app-debug.apk`](.build-outputs/app-debug.apk))*
+### [Direct Download: app-debug.apk (22 MB)](app-debug.apk)
+*(Mirror: [qobley-debug.apk](qobley-debug.apk) | Build output path: [.build-outputs/app-debug.apk](.build-outputs/app-debug.apk))*
 
 <br/>
 
-| Parameter | Specification |
+| Parameter | Value |
 | :--- | :--- |
 | **Application ID** | `com.aistudio.qobley.xkvpq` |
-| **Target Android OS** | Android 16 (API Level 36) |
-| **Minimum Android OS** | Android 8.0 (API Level 24) — *Ensures support for older, affordable smartphones* |
-| **Compilation Status** | Clean Build Verified (`compile_applet` & `assembleDebug`) |
-| **License** | MIT License (100% Free & Open Source) |
+| **Package File** | `app-debug.apk` |
+| **File Size** | 22 Megabytes |
+| **Minimum SDK** | Android 8.0 (API Level 24) - Ensures compatibility with legacy and budget phones |
+| **Target SDK** | Android 16 (API Level 36) |
+| **Build Status** | Compiled and verified (`gradle assembleDebug`) |
+| **License** | MIT License |
 
 </div>
 
-### Install via ADB (Android Debug Bridge)
+### Installation via Android Debug Bridge (ADB)
 ```bash
-# Direct install onto any USB-connected Android phone or emulator
+# Install directly onto USB-connected Android phone
 adb install -r app-debug.apk
 
-# Instantly launch the high-speed scanner via deep link
+# Instantly launch camera scanner without opening menus
 adb shell am start -a android.intent.action.VIEW -d "qobley://scan"
 ```
 
 ---
 
-## 📱 Real Android App & Widget Screenshots (No AI Generated)
+## Actual Application and Widget Screenshots
 
-These screenshots are rendered directly from the application's native XML layouts, Android View hierarchy, and live runtime ZXing barcode engine:
+The following screenshots are rendered directly from the application's native XML layout hierarchies, Android View pipeline, and live runtime ZXing barcode engine:
 
 <div align="center">
 
-### 1. Live Scannable Pinned Code & Favorites Widgets
+### 1. Camera Scanner and Live Detection
+*Sub-18ms CameraX viewfinder with real-time detection HUD, instant action sheet, and on-device Room persistence.*
+
+<img src="assets/screenshot_scanner.png" alt="Qobley Scanner Screen" width="480" />
+
+<br/><br/>
+
+### 2. Creator Studio and Customization
+*Wi-Fi, vCard, UPI payments, and 1D barcodes with vector customization, center emblems, and error correction.*
+
+<img src="assets/screenshot_creator.png" alt="Qobley Creator Screen" width="480" />
+
+<br/><br/>
+
+### 3. Android Home-Screen Widget Ecosystem
+*Showcase of the 5 widgets: 1x1 Quick Scan, Medium Quick Access, Command Center, Favorites list, and live Pinned Code.*
+
+<img src="assets/screenshot_widgets.png" alt="Qobley Widgets Showcase" width="900" />
+
+<br/><br/>
+
+### 4. Pinned Scannable Code and Favorites Widgets
 *Left: Live scannable QR bitmap pinned directly onto the Android home screen so shop customers can scan it without opening the app. Right: Starred favorites widget with instant access to shop Wi-Fi and UPI payment VPAs.*
 
 <p align="center">
-  <img src="assets/screenshot_widget_single_pinned.png" alt="Pinned Code Widget" width="340" />
+  <img src="assets/screenshot_widget_single_pinned.png" alt="Pinned Code Widget" width="360" />
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="assets/screenshot_widget_favorites.png" alt="Favorites Widget" width="460" />
-</p>
-
-<br/>
-
-### 2. Large Command Center & Medium Quick Access Widgets
-*Top: Command Center with immediate Scan bar, format creators, and dynamic recent scans. Bottom: Compact Medium Quick Access.*
-
-<p align="center">
-  <img src="assets/screenshot_widget_large.png" alt="Command Center Widget" width="560" />
-</p>
-<p align="center">
-  <img src="assets/screenshot_widget_medium.png" alt="Medium Quick Access Widget" width="500" />
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="assets/screenshot_widget_small.png" alt="1x1 Quick Scan Widget" width="220" />
-</p>
-
-<br/>
-
-### 3. Application Workflow & User Interface
-*Left: Sub-millisecond CameraX scanner with automatic URL and UPI payment detection. Right: Creator Studio with high-contrast palette and Wi-Fi generator.*
-
-<p align="center">
-  <img src="assets/screenshot_scanner.svg" alt="Scanner UI" width="340" />
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="assets/screenshot_creator.svg" alt="Creator UI" width="340" />
+  <img src="assets/screenshot_widget_favorites.png" alt="Favorites Widget" width="480" />
 </p>
 
 </div>
 
 ---
 
-## 🧩 Android Widgets & Accessibility Layer
+## Android Widgets and Accessibility Layer
 
-Qobley implements 5 native Android home-screen widgets designed specifically for accessibility, high contrast, and zero-latency access:
+Qobley implements 5 native Android home-screen widgets built with high contrast, large touch targets, and zero-latency deep links:
 
-| Widget Name | Target Cells | Purpose for Non-Tech Users & Shopkeepers |
-| :--- | :--- | :--- |
-| **1×1 Quick Scan** (`QobleySmallWidget`) | 1 × 1 (70dp) | **Zero-barrier camera launch.** Tap once, and the camera is live. No splash screen, no menu navigation. Ideal for seniors. |
-| **Medium Quick Access** (`QobleyMediumWidget`) | 3 × 2 (180dp) | **Common daily actions.** Instant scan bar with dedicated buttons for QR, Barcode, and Gallery Photo scanning. |
-| **Large Command Center** (`QobleyLargeWidget`) | 4 × 3 (260dp) | **Complete shop counter hub.** High-contrast scan banner, quick creators for Wi-Fi and UPI payments, plus 2-4 recent scans. |
-| **Qobley Favorites** (`QobleyFavoritesWidget`) | 3 × 2 (180dp) | **One-tap library access.** Pinned customer loyalty cards, Wi-Fi credentials, and UPI payment IDs with prominent category pills. |
-| **Live Pinned Code** (`QobleySingleCodeWidget`) | 2 × 2 (140dp) | **Scannable phone display.** Renders a live, high-contrast QR code directly on the home screen. Customers can scan the shopkeeper's phone directly! |
+### 1. 1x1 Quick Scan (`QobleySmallWidget`)
+* **Purpose:** Zero-barrier camera launch.
+* **Layout:** High-contrast camera action icon with brand label.
+* **Behavior:** One tap launches `qobley://scan` directly into the CameraX viewfinder. No splash screens or home menus.
+* **Target Size:** 1x1 launcher cell (min 70dp x 70dp).
 
-### Additional Quick-Access Entry Points
-* ⚡ **Quick Settings System Tiles**: Swipe down from the notification shade on any screen to tap **Qobley Scan** (`QobleyTileService`) or **Qobley Create** (`QobleyCreateTileService`).
-* 🎯 **Launcher Shortcuts**: Long-press the Qobley app icon to jump straight to Wi-Fi QR creation or top starred items.
-* 🛡️ **Zero-Trust Share Target**: Share any text, link, contact, or photo directly from WhatsApp or a web browser into Qobley. The user always previews the code before saving.
+### 2. Medium Quick Access (`QobleyMediumWidget`)
+* **Purpose:** Primary daily scanning and creation workflows.
+* **Layout:** Full-width primary Scan Code bar with direct creator buttons for QR, Barcode, and Gallery Photo scanning.
+* **Target Size:** 3x2 launcher cells.
 
----
+### 3. Large Command Center (`QobleyLargeWidget`)
+* **Purpose:** Countertop management hub for small shopkeepers.
+* **Components:**
+  * High-contrast Scan Any Code bar.
+  * Direct creator shortcuts: QR, Barcode, Wi-Fi, Payment.
+  * Live feed of the 2 to 4 most recent scans retrieved dynamically from Room database.
+  * Tap on any recent item to open full details.
+* **Target Size:** 4x3 launcher cells.
 
-## 🛠️ All Technology Stack & Dependencies
+### 4. Qobley Favorites (`QobleyFavoritesWidget`)
+* **Purpose:** Immediate access to mission-critical daily codes.
+* **Features:**
+  * Shows starred items (Shop Wi-Fi, Customer Loyalty Card, Business Contact, Payment VPA).
+  * Category badge pills (WIFI, URL, PAY, EAN).
+  * One-tap access to view detail sheet or copy payload.
+* **Target Size:** 3x2 launcher cells.
 
-Qobley is built 100% natively for Android using modern Kotlin, Jetpack Compose, and robust open-source libraries:
-
-<div align="center">
-<img src="assets/architecture_diagram.svg" alt="Qobley Architecture Diagram" width="100%" />
-</div>
-
-<br/>
-
-### 1. Language & Build System
-* **Kotlin 2.2 (`2.2.10`)**: 100% modern Kotlin with strict type-safety, sealed UI states, and coroutines.
-* **Gradle 8.11 / AGP 9.1 (`9.1.1`)**: Kotlin DSL (`build.gradle.kts`) with version catalogs (`libs.versions.toml`).
-* **Java Compatibility**: Java 11 bytecode compatibility.
-
-### 2. User Interface & Design System
-* **Jetpack Compose (`androidx.compose.bom:2024.09.00`)**: Modern declarative UI framework.
-* **Material Design 3 (`androidx.compose.material3`)**: Dynamic M3 color schemes, accessible contrast ratios, and minimum 48dp touch targets.
-* **Compose Navigation (`androidx.navigation:navigation-compose:2.8.9`)**: Type-safe navigation backstack with deep-link resolution.
-* **Compose Material Icons (`material-icons-extended`)**: Clear, standardized iconography for intuitive recognition.
-
-### 3. Hardware & Camera Vision
-* **AndroidX CameraX 1.5 (`1.5.0`)**:
-  * `androidx.camera:camera-camera2`
-  * `androidx.camera:camera-lifecycle`
-  * `androidx.camera:camera-view`
-  * `androidx.camera:camera-core`
-  * Provides hardware-accelerated camera frames, pinch-to-zoom, tap-to-focus, and torch flash support.
-* **Google ZXing Core (`com.google.zxing:core:3.5.3`)**:
-  * `MultiFormatReader`: High-speed full-frame decoding for both 2D matrices and 1D retail barcodes.
-  * `MultiFormatWriter`: Vector barcode matrix generation with custom error correction levels (L, M, Q, H).
-
-### 4. Local Persistence & Data Storage
-* **Android Room 2.7 (`androidx.room:room-runtime:2.7.0`, `room-ktx:2.7.0`)**:
-  * SQLite database with reactive Kotlin Flow observers.
-  * Synchronous DAO hooks (`getRecentSync`, `getFavoritesSync`, `getByIdSync`) for sub-millisecond widget updates.
-* **Kotlin Symbol Processing (KSP `2.3.5`)**: High-speed annotation processing for Room entities and DAOs.
-* **Data Privacy**: **100% on-device local SQLite.** Zero telemetry, zero cloud tracking, zero network permissions required for core functions.
-
-### 5. Android System Integrations
-* **Android AppWidget Framework**: `AppWidgetProvider`, `RemoteViews`, `AppWidgetManager`.
-* **Android Quick Settings**: `TileService` (`QobleyTileService`, `QobleyCreateTileService`).
-* **Android Shortcuts**: `ShortcutManagerCompat` for static and dynamic home-screen launcher actions.
-* **Android Deep Linking**: Centralized URI routing (`QobleyDeepLinkRouter`) resolving `qobley://` and `https://` schemas.
-* **Android Photo Picker**: Zero-permission `ActivityResultContracts.PickVisualMedia` for private gallery scanning.
-
-### 6. Testing & Quality Assurance
-* **Robolectric 4.16 (`4.16.1`)**: Local JVM unit and integration testing without requiring an emulator.
-* **AndroidX JUnit & Compose Testing**: `androidx.compose.ui:ui-test-junit4`, `androidx.test.ext:junit:1.3.0`.
-* **Coroutines Test**: `kotlinx-coroutines-test:1.10.2`.
+### 5. Live Scannable Pinned Code (`QobleySingleCodeWidget`)
+* **Purpose:** Turns the phone's home screen into a scannable counter display.
+* **Features:**
+  * Displays a live, high-contrast QR or barcode bitmap rendered on-device at 512x512 resolution.
+  * Customers can scan the shopkeeper's phone directly off the home screen without waking the app.
+  * Includes Show in App and Share actions.
+  * Configurable via `QobleyWidgetConfigActivity` to bind any item from the local library.
+* **Target Size:** 2x2 launcher cells.
 
 ---
 
-## 🔗 Centralized Deep Link Specification
+## Quick Settings Tiles and Launcher Shortcuts
 
-Every widget, shortcut, tile, and share action resolves through `QobleyDeepLinkRouter`:
+* **Qobley Scan Tile (`QobleyTileService`):** Swipe down from Android's Quick Settings shade to launch CameraX scanning immediately from any active app or lock screen.
+* **Qobley Create Tile (`QobleyCreateTileService`):** Swipe down to launch the Creator Studio directly.
+* **Static and Dynamic Launcher Shortcuts:** Long-press the Qobley app icon to trigger Scan, Wi-Fi QR creation, Barcode creation, or top starred codes.
+
+---
+
+## Technology Stack and Architecture
+
+```
+Qobley System Architecture
++----------------------------------------------------------------+
+| Presentation Layer: Jetpack Compose, Material 3, Navigation    |
++----------------------------------------------------------------+
+| ViewModel & State: MainViewModel, StateFlow, Kotlin Coroutines |
++----------------------------------------------------------------+
+| Scanning Engine: CameraX 1.5, BarcodeAnalyzer, ZXing Reader    |
++----------------------------------------------------------------+
+| Generation Engine: ZXing MultiFormatWriter, BarcodeValidator   |
++----------------------------------------------------------------+
+| Data Layer: Room 2.7 SQLite DB, CodeDao, KSP Compiler          |
++----------------------------------------------------------------+
+| System Layer: AppWidgets, RemoteViews, TileService, Shortcuts  |
++----------------------------------------------------------------+
+```
+
+### Complete Dependency Breakdown
+
+1. **Language and Core Framework**
+   * Kotlin 2.2 (`2.2.10`)
+   * Kotlin Coroutines and StateFlow (`1.10.2`)
+   * AndroidX Core KTX (`1.18.0`)
+   * AndroidX Lifecycle Runtime and ViewModel Compose (`2.8.7`)
+
+2. **User Interface**
+   * Jetpack Compose BOM (`2024.09.00`)
+   * Material Design 3 (`androidx.compose.material3`)
+   * Navigation Compose (`2.8.9`)
+   * Material Icons Extended (`androidx.compose.material.icons.extended`)
+
+3. **Camera Vision and Barcode Decoding**
+   * AndroidX CameraX Core (`1.5.0`)
+   * AndroidX CameraX Camera2 (`1.5.0`)
+   * AndroidX CameraX Lifecycle (`1.5.0`)
+   * AndroidX CameraX View (`1.5.0`)
+   * Google ZXing Core (`3.5.3`) - MultiFormatReader and MultiFormatWriter
+
+4. **Local Data Persistence**
+   * Android Room Runtime (`2.7.0`)
+   * Android Room KTX (`2.7.0`)
+   * Android Room Compiler with KSP (`2.3.5`)
+   * 100% On-device SQLite with synchronous DAO queries for instant widget updates
+
+5. **Networking and Serialization**
+   * Square OkHttp (`4.10.0`)
+   * Square Retrofit (`2.12.0`)
+   * Square Moshi Kotlin (`1.15.2`) and Moshi Codegen
+
+6. **Testing Framework**
+   * Robolectric (`4.16.1`)
+   * AndroidX JUnit (`1.3.0`)
+   * AndroidX Compose UI Test JUnit 4 (`androidx.compose.ui:ui-test-junit4`)
+   * JUnit 4 (`4.13.2`)
+
+---
+
+## Centralized Deep Link Specification
+
+All entry points (Widgets, Quick Settings, Shortcuts, Share Target, External Links) resolve through `QobleyDeepLinkRouter`:
 
 | Deep Link URI | Destination | Accessibility Benefit |
 | :--- | :--- | :--- |
-| `qobley://scan` | Camera Scanner (Direct Viewfinder) | Bypasses all menus; directly opens camera for immediate scanning. |
+| `qobley://scan` | Camera Scanner (Direct Viewfinder) | Bypasses all menus; opens camera for immediate scanning. |
 | `qobley://scan/image` | Android System Photo Picker | Zero-permission gallery import for saved receipts and flyers. |
-| `qobley://scan/document`| High-Contrast Document Scanner | Aids elderly users in capturing high-contrast physical paper documents. |
+| `qobley://scan/document` | High-Contrast Document Scanner | Aids elderly users in capturing high-contrast physical paper documents. |
 | `qobley://create` | Creator Studio Home | Unified creation hub. |
 | `qobley://create/qr` | QR Code Creator | Creates web, text, or customized QR codes. |
-| `qobley://create/barcode`| 1D Barcode Creator | Creates retail/product barcodes with auto-calculated checksums. |
+| `qobley://create/barcode` | 1D Barcode Creator | Creates retail/product barcodes with auto-calculated checksums. |
 | `qobley://create/qr?type=wifi` | Wi-Fi QR Creator | Pre-fills Wi-Fi creation so shopkeepers can share connectivity easily. |
-| `qobley://create/qr?type=payment`| UPI Payment QR Creator | Pre-fills digital payment parameters for shop counters. |
-| `qobley://create/qr?type=contact`| vCard 3.0 Creator | Generates business cards with phone, email, and address. |
+| `qobley://create/qr?type=payment` | UPI Payment QR Creator | Pre-fills digital payment parameters for shop counters. |
+| `qobley://create/qr?type=contact` | vCard 3.0 Creator | Generates business cards with phone, email, and address. |
 | `qobley://history` | Scanned History Tab | Chronological list of scanned codes with search and export. |
 | `qobley://saved` | Saved Library Tab | Starred favorites and organized collections. |
-| `qobley://item/{id}` | Detail & Action Sheet | View code details, copy payload, print, or share. |
+| `qobley://item/{id}` | Detail and Action Sheet | View code details, copy payload, print, or share. |
 
 ---
 
-## 🛡️ Privacy & Security
+## Privacy and Security
 
-* 🚫 **No Tracking / Zero Telemetry**: Contains no analytics SDKs, advertising trackers, or background beacons.
-* 🔒 **100% On-Device Processing**: Camera image decoding and barcode generation execute exclusively on the device CPU.
-* 🛡️ **Zero Broad Storage Permissions**: Never requests `READ_EXTERNAL_STORAGE` or `READ_MEDIA_IMAGES`. All media selection uses the modern zero-permission Android Photo Picker.
-* ⚡ **Safe Share Confirmation**: Shared content from other apps is never automatically executed or silently saved; the user must review and confirm first.
+* **Zero Telemetry:** No analytics SDKs, advertising trackers, or background beacons.
+* **100% On-Device Processing:** Camera image decoding and barcode generation execute exclusively on the device CPU.
+* **Zero Broad Storage Permissions:** Never requests `READ_EXTERNAL_STORAGE` or `READ_MEDIA_IMAGES`. All media selection uses the modern zero-permission Android Photo Picker.
+* **Safe Share Confirmation:** Shared content from other apps is never automatically executed or silently saved; the user must review and confirm first.
 
 ---
 
-## 🧪 Rigorous Testing & Verification
+## Testing and Verification
 
 Qobley has been rigorously tested across critical user journeys, parsing edge cases, barcode checksum algorithms, widget data synchronization, and database transactions:
 
@@ -265,16 +302,39 @@ Qobley has been rigorously tested across critical user journeys, parsing edge ca
 gradle :app:testDebugUnitTest
 ```
 
-### Verified Test Suites (100% Passing):
-1. **`WidgetsQuickAccessTest`**: Verifies all 5 widget providers, deep link routing, per-widget preferences, Room sync queries, and launcher shortcuts.
-2. **`PayloadParserTest`**: Exhaustive edge-case validation for URLs, Wi-Fi strings, vCard contacts, UPI payments, 2FA tokens, and raw barcodes.
-3. **`CreatorStudioTest`**: Validates Luhn/modulo checksum generators (EAN-13, EAN-8, UPC-A) and scannability of generated QR codes with center emblems.
-4. **`LibraryOrganizationTest`**: Validates CSV and JSON serialization, RFC 4180 compliance, and search filter accuracy.
-5. **`VigorousEdgeCaseStressTest`**: Adversarial stress testing, concurrent database writes, and corrupted payload resilience.
+### Verified Test Suites (100% Passing)
+1. **`WidgetsQuickAccessTest`:** Verifies all 5 widget providers, deep link routing, per-widget preferences, Room sync queries, and launcher shortcuts.
+2. **`PayloadParserTest`:** Exhaustive edge-case validation for URLs, Wi-Fi strings, vCard contacts, UPI payments, 2FA tokens, and raw barcodes.
+3. **`CreatorStudioTest`:** Validates Luhn/modulo checksum generators (EAN-13, EAN-8, UPC-A) and scannability of generated QR codes with center emblems.
+4. **`LibraryOrganizationTest`:** Validates CSV and JSON serialization, RFC 4180 compliance, and search filter accuracy.
+5. **`VigorousEdgeCaseStressTest`:** Adversarial stress testing, concurrent database writes, and corrupted payload resilience.
 
 ---
 
-## 📄 License
+## Building from Source
+
+### Prerequisites
+* JDK 17 or higher
+* Android SDK Platform 36 (Android 16)
+* Android SDK Build-Tools 36.0.0
+* Gradle 8.11+ / AGP 9.1+
+
+### Build Steps
+```bash
+# Clone the repository
+git clone https://github.com/qobley/android.git
+cd android
+
+# Compile and build the debug APK
+gradle assembleDebug
+
+# Output artifact location:
+# app/build/outputs/apk/debug/app-debug.apk
+```
+
+---
+
+## License
 
 This project is open-source software licensed under the **[MIT License](LICENSE)**.
 
@@ -305,6 +365,6 @@ SOFTWARE.
 ---
 
 <div align="center">
-  <b>Qobley — Technology should leave no one behind.</b><br/>
+  <b>Qobley - Technology should leave no one behind.</b><br/>
   Every code. One place. Built with empathy for real communities.
 </div>
