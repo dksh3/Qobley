@@ -11,7 +11,7 @@
             android:targetPackage="com.aistudio.qobley.xkvpq"
             android:targetClass="com.example.MainActivity"
             android:data="qobley://scan" />
-        <categories android:name="android.shortcut.conversation" />
+        <categories android:name="android.intent.category.DEFAULT" />
     </shortcut>
 
     <shortcut

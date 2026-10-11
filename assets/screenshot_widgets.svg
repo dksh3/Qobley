@@ -1,0 +1,200 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="100%" height="100%">
+  <defs>
+    <linearGradient id="wallBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="50%" stop-color="#1E1B4B" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+    <filter id="widgetDrop" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Wallpaper Background -->
+  <rect width="1000" height="700" rx="24" fill="url(#wallBg)"/>
+  
+  <!-- Subtle Home Screen Header -->
+  <g transform="translate(60, 40)">
+    <text x="0" y="24" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="800">Qobley Android Widget Ecosystem</text>
+    <text x="0" y="52" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="400">Zero-latency home-screen access — Never force users to open the app first.</text>
+  </g>
+
+  <!-- WIDGET 1: Small Quick Scan (1x1) -->
+  <g transform="translate(60, 110)" filter="url(#widgetDrop)">
+    <rect width="180" height="180" rx="28" fill="#1E293B" stroke="#334155" stroke-width="1.5"/>
+    <g transform="translate(24, 24)">
+      <!-- Camera Button Icon -->
+      <circle cx="66" cy="46" r="34" fill="#2563EB"/>
+      <path d="M 52 46 C 52 46 56 38 66 38 C 76 38 80 46 80 46" stroke="#FFFFFF" stroke-width="2.5" fill="none"/>
+      <circle cx="66" cy="46" r="10" stroke="#FFFFFF" stroke-width="2.5" fill="none"/>
+      <circle cx="74" cy="40" r="2.5" fill="#FFFFFF"/>
+
+      <text x="66" y="106" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="700" text-anchor="middle">Scan</text>
+      <text x="66" y="126" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" text-anchor="middle">Qobley Quick</text>
+    </g>
+    <!-- Label tag below widget -->
+    <text x="90" y="210" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" text-anchor="middle">1×1 Quick Scan</text>
+  </g>
+
+  <!-- WIDGET 2: Medium Quick Access (3x2) -->
+  <g transform="translate(280, 110)" filter="url(#widgetDrop)">
+    <rect width="360" height="180" rx="28" fill="#1E293B" stroke="#334155" stroke-width="1.5"/>
+    <g transform="translate(24, 20)">
+      <!-- Widget Header -->
+      <text x="0" y="20" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700">Qobley Quick Access</text>
+      <text x="0" y="38" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11">Every code. One place.</text>
+
+      <!-- Primary Scan Bar -->
+      <rect x="0" y="48" width="312" height="42" rx="10" fill="#2563EB"/>
+      <text x="156" y="74" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" text-anchor="middle">📷 SCAN ANY CODE</text>
+
+      <!-- Row of Creators -->
+      <g transform="translate(0, 98)">
+        <rect x="0" y="0" width="98" height="36" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+        <text x="49" y="22" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" text-anchor="middle">QR Code</text>
+
+        <rect x="106" y="0" width="98" height="36" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+        <text x="155" y="22" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" text-anchor="middle">Barcode</text>
+
+        <rect x="212" y="0" width="100" height="36" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+        <text x="262" y="22" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" text-anchor="middle">Scan Image</text>
+      </g>
+    </g>
+    <text x="180" y="210" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Medium Quick Access</text>
+  </g>
+
+  <!-- WIDGET 3: Live Scannable Pinned Code Widget -->
+  <g transform="translate(680, 110)" filter="url(#widgetDrop)">
+    <rect width="260" height="260" rx="28" fill="#1E293B" stroke="#334155" stroke-width="1.5"/>
+    <g transform="translate(24, 20)">
+      <text x="0" y="16" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700">Guest Wi-Fi</text>
+      <text x="212" y="16" fill="#60A5FA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" text-anchor="end">WPA2</text>
+
+      <!-- Scannable High-Contrast QR Code Bitmap -->
+      <g transform="translate(36, 30)">
+        <rect x="0" y="0" width="140" height="140" rx="8" fill="#FFFFFF"/>
+        <!-- QR Patterns -->
+        <!-- TL -->
+        <rect x="10" y="10" width="34" height="34" fill="#000000"/>
+        <rect x="16" y="16" width="22" height="22" fill="#FFFFFF"/>
+        <rect x="21" y="21" width="12" height="12" fill="#000000"/>
+        <!-- TR -->
+        <rect x="96" y="10" width="34" height="34" fill="#000000"/>
+        <rect x="102" y="16" width="22" height="22" fill="#FFFFFF"/>
+        <rect x="107" y="21" width="12" height="12" fill="#000000"/>
+        <!-- BL -->
+        <rect x="10" y="96" width="34" height="34" fill="#000000"/>
+        <rect x="16" y="102" width="22" height="22" fill="#FFFFFF"/>
+        <rect x="21" y="107" width="12" height="12" fill="#000000"/>
+        <!-- Modules -->
+        <rect x="52" y="14" width="8" height="8" fill="#000000"/>
+        <rect x="68" y="14" width="8" height="8" fill="#000000"/>
+        <rect x="52" y="30" width="16" height="8" fill="#000000"/>
+        <rect x="52" y="52" width="12" height="12" fill="#000000"/>
+        <rect x="74" y="52" width="14" height="14" fill="#000000"/>
+        <rect x="98" y="52" width="12" height="8" fill="#000000"/>
+        <rect x="118" y="52" width="12" height="12" fill="#000000"/>
+        <rect x="52" y="80" width="16" height="12" fill="#000000"/>
+        <rect x="78" y="80" width="12" height="16" fill="#000000"/>
+        <rect x="102" y="80" width="24" height="12" fill="#000000"/>
+        <rect x="52" y="112" width="20" height="14" fill="#000000"/>
+        <rect x="84" y="112" width="12" height="14" fill="#000000"/>
+        <rect x="106" y="104" width="24" height="22" fill="#000000"/>
+      </g>
+
+      <!-- Action buttons -->
+      <g transform="translate(0, 184)">
+        <rect x="0" y="0" width="100" height="28" rx="6" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+        <text x="50" y="18" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" text-anchor="middle">Show Full</text>
+
+        <rect x="112" y="0" width="100" height="28" rx="6" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+        <text x="162" y="18" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" text-anchor="middle">Share</text>
+      </g>
+    </g>
+    <text x="130" y="286" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Live Scannable Pinned Code</text>
+  </g>
+
+  <!-- WIDGET 4: Large Command Center Widget -->
+  <g transform="translate(60, 360)" filter="url(#widgetDrop)">
+    <rect width="580" height="280" rx="28" fill="#1E293B" stroke="#334155" stroke-width="1.5"/>
+    <g transform="translate(24, 20)">
+      <!-- Header -->
+      <text x="0" y="20" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700">Qobley Command Center</text>
+      <text x="532" y="20" fill="#60A5FA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" text-anchor="end">History →</text>
+
+      <!-- Big Scan Banner -->
+      <rect x="0" y="32" width="532" height="44" rx="12" fill="#2563EB"/>
+      <text x="266" y="59" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" text-anchor="middle">📷 SCAN ANY CODE INSTANTLY</text>
+
+      <!-- Creators Bar -->
+      <g transform="translate(0, 86)">
+        <rect x="0" y="0" width="124" height="34" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+        <text x="62" y="21" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" text-anchor="middle">QR Code</text>
+
+        <rect x="136" y="0" width="124" height="34" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+        <text x="198" y="21" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Barcode</text>
+
+        <rect x="272" y="0" width="124" height="34" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+        <text x="334" y="21" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Wi-Fi</text>
+
+        <rect x="408" y="0" width="124" height="34" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+        <text x="470" y="21" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Payment</text>
+      </g>
+
+      <!-- Recent Items List -->
+      <text x="0" y="146" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" letter-spacing="1">RECENT CODES</text>
+      
+      <!-- Recent Item 1 -->
+      <g transform="translate(0, 156)">
+        <rect width="532" height="36" rx="8" fill="#0F172A" stroke="#334155" stroke-width="0.8"/>
+        <text x="14" y="23" fill="#60A5FA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">[URL]</text>
+        <text x="56" y="23" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">Qobley Repository</text>
+        <text x="190" y="23" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11">• github.com/qobley/android</text>
+        <text x="516" y="23" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" text-anchor="end">2m ago</text>
+      </g>
+
+      <!-- Recent Item 2 -->
+      <g transform="translate(0, 198)">
+        <rect width="532" height="36" rx="8" fill="#0F172A" stroke="#334155" stroke-width="0.8"/>
+        <text x="14" y="23" fill="#10B981" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">[WIFI]</text>
+        <text x="62" y="23" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">Office Fast Wi-Fi</text>
+        <text x="180" y="23" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11">• WPA3 Enterprise</text>
+        <text x="516" y="23" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" text-anchor="end">1h ago</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- WIDGET 5: Favorites Widget -->
+  <g transform="translate(680, 410)" filter="url(#widgetDrop)">
+    <rect width="260" height="230" rx="28" fill="#1E293B" stroke="#334155" stroke-width="1.5"/>
+    <g transform="translate(20, 20)">
+      <text x="0" y="16" fill="#FBBF24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14">★</text>
+      <text x="18" y="16" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">Favorites</text>
+      <text x="220" y="16" fill="#60A5FA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" text-anchor="end">Saved →</text>
+
+      <!-- Fav 1 -->
+      <g transform="translate(0, 30)">
+        <rect width="220" height="42" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+        <text x="12" y="26" fill="#FBBF24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">★</text>
+        <text x="28" y="26" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">Home Wi-Fi</text>
+        <text x="208" y="26" fill="#10B981" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" text-anchor="end">WIFI</text>
+      </g>
+
+      <!-- Fav 2 -->
+      <g transform="translate(0, 80)">
+        <rect width="220" height="42" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+        <text x="12" y="26" fill="#FBBF24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">★</text>
+        <text x="28" y="26" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">UPI Payment</text>
+        <text x="208" y="26" fill="#3B82F6" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" text-anchor="end">PAY</text>
+      </g>
+
+      <!-- Fav 3 -->
+      <g transform="translate(0, 130)">
+        <rect width="220" height="42" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+        <text x="12" y="26" fill="#FBBF24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">★</text>
+        <text x="28" y="26" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">Membership Barcode</text>
+        <text x="208" y="26" fill="#F59E0B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" text-anchor="end">EAN</text>
+      </g>
+    </g>
+  </g>
+</svg>

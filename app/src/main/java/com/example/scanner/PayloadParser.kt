@@ -129,7 +129,7 @@ object PayloadParser {
         }
 
         return ParsedPayload.Wifi(
-            ssid = ssid.ifEmpty { "Hidden Network" },
+            ssid = if (ssid.isEmpty()) (if (hidden) "Hidden Network" else "") else ssid,
             password = password,
             security = if (security.isEmpty()) "WPA" else security,
             isHidden = hidden

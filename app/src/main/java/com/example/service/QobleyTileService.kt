@@ -4,10 +4,20 @@ import android.app.PendingIntent
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
+import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
 import com.example.MainActivity
 
 class QobleyTileService : TileService() {
+
+    override fun onStartListening() {
+        super.onStartListening()
+        qsTile?.apply {
+            state = Tile.STATE_INACTIVE
+            label = "Qobley Scan"
+            updateTile()
+        }
+    }
 
     override fun onClick() {
         super.onClick()

@@ -80,6 +80,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+        // Publish top dynamic shortcuts to launcher on startup
+        com.example.util.QobleyShortcutManager.updateDynamicShortcuts(this)
+
+        val uri = intent?.data
+        val isQuickScanLaunch = intent?.action == Intent.ACTION_VIEW &&
+                uri?.scheme == "qobley" &&
+                uri.host == "scan" &&
+                uri.pathSegments.isEmpty()
+
         // Handle initial intent
         handleIntent(intent)
 
@@ -92,7 +101,10 @@ class MainActivity : ComponentActivity() {
             }
 
             MyApplicationTheme(darkTheme = isDark) {
-                QobleyApp(viewModel = viewModel)
+                QobleyApp(
+                    viewModel = viewModel,
+                    initialSubScreen = if (isQuickScanLaunch) "scanner" else null
+                )
             }
         }
     }
@@ -107,47 +119,36 @@ class MainActivity : ComponentActivity() {
 
         when (intent.action) {
             Intent.ACTION_VIEW -> {
-                val data: Uri? = intent.data
-                if (data != null && data.scheme == "qobley") {
-                    val host = data.host ?: ""
-                    val pathSegments = data.pathSegments
-                    when (host) {
-                        "scan" -> {
-                            if (pathSegments.isNotEmpty() && pathSegments[0] == "image") {
-                                viewModel.postNavigationRequest(MainViewModel.NavigationRequest.ScanImage)
-                            } else {
-                                viewModel.setActiveScanResult(null)
-                                viewModel.postNavigationRequest(MainViewModel.NavigationRequest.Scanner)
-                            }
-                        }
-                        "create" -> {
-                            val subType = if (pathSegments.isNotEmpty()) pathSegments[0] else "qr"
-                            when (subType.lowercase()) {
-                                "barcode" -> viewModel.postNavigationRequest(MainViewModel.NavigationRequest.CreateBarcode)
-                                "wifi" -> viewModel.postNavigationRequest(MainViewModel.NavigationRequest.CreateQr(initialType = "WIFI"))
-                                "payment" -> viewModel.postNavigationRequest(MainViewModel.NavigationRequest.CreateQr(initialType = "PAYMENT"))
-                                "contact" -> viewModel.postNavigationRequest(MainViewModel.NavigationRequest.CreateQr(initialType = "CONTACT"))
-                                "url" -> viewModel.postNavigationRequest(MainViewModel.NavigationRequest.CreateQr(initialType = "URL"))
-                                "text" -> viewModel.postNavigationRequest(MainViewModel.NavigationRequest.CreateQr(initialType = "TEXT"))
-                                else -> viewModel.postNavigationRequest(MainViewModel.NavigationRequest.CreateQr())
-                            }
-                        }
-                        "history" -> viewModel.postNavigationRequest(MainViewModel.NavigationRequest.History)
-                        "saved" -> viewModel.postNavigationRequest(MainViewModel.NavigationRequest.Saved)
-                        "item" -> {
-                            val id = if (pathSegments.isNotEmpty()) pathSegments[0].toLongOrNull() else null
-                            if (id != null) {
-                                viewModel.postNavigationRequest(MainViewModel.NavigationRequest.ViewDetail(id))
-                            }
-                        }
+                val req = com.example.util.QobleyDeepLinkRouter.parseUri(intent.data)
+                if (req != null) {
+                    if (req is MainViewModel.NavigationRequest.Scanner) {
+                        viewModel.setActiveScanResult(null)
                     }
+                    viewModel.postNavigationRequest(req)
                 }
             }
             Intent.ACTION_SEND -> {
                 if (intent.type == "text/plain") {
                     val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
                     if (!sharedText.isNullOrBlank()) {
-                        viewModel.handleScannedCode(sharedText, "QR_CODE", "IMPORTED")
+                        val parsed = com.example.scanner.PayloadParser.parse(sharedText, "QR_CODE")
+                        val req = when (parsed) {
+                            is com.example.data.model.ParsedPayload.Url -> MainViewModel.NavigationRequest.CreateQr(prefilledText = sharedText, initialType = "URL")
+                            is com.example.data.model.ParsedPayload.Phone -> MainViewModel.NavigationRequest.CreateQr(prefilledText = parsed.rawNumber, initialType = "PHONE")
+                            is com.example.data.model.ParsedPayload.Email -> MainViewModel.NavigationRequest.CreateQr(prefilledText = parsed.email, initialType = "EMAIL")
+                            is com.example.data.model.ParsedPayload.Wifi -> MainViewModel.NavigationRequest.CreateQr(prefilledText = sharedText, initialType = "WIFI")
+                            is com.example.data.model.ParsedPayload.Contact -> MainViewModel.NavigationRequest.CreateQr(prefilledText = sharedText, initialType = "CONTACT")
+                            is com.example.data.model.ParsedPayload.Payment -> MainViewModel.NavigationRequest.CreateQr(prefilledText = sharedText, initialType = "PAYMENT")
+                            is com.example.data.model.ParsedPayload.Geo -> MainViewModel.NavigationRequest.CreateQr(prefilledText = sharedText, initialType = "LOCATION")
+                            else -> {
+                                if (sharedText.startsWith("http://") || sharedText.startsWith("https://") || sharedText.contains(".")) {
+                                    MainViewModel.NavigationRequest.CreateQr(prefilledText = sharedText, initialType = "URL")
+                                } else {
+                                    MainViewModel.NavigationRequest.CreateQr(prefilledText = sharedText, initialType = "TEXT")
+                                }
+                            }
+                        }
+                        viewModel.postNavigationRequest(req)
                     }
                 } else if (intent.type?.startsWith("image/") == true) {
                     val imageUri = intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)
@@ -162,12 +163,17 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun QobleyApp(viewModel: MainViewModel) {
+fun QobleyApp(
+    viewModel: MainViewModel,
+    initialSubScreen: String? = null
+) {
     val context = androidx.compose.ui.platform.LocalContext.current
+    val clipboardManager = androidx.compose.ui.platform.LocalClipboardManager.current
     var currentTab by remember { mutableStateOf("home") } // home, create, history, saved, settings
-    var currentSubScreen by remember { mutableStateOf<String?>(null) } // scanner, batch, document, qr_creator, barcode_creator, detail
+    var currentSubScreen by remember { mutableStateOf<String?>(initialSubScreen) } // scanner, batch, document, qr_creator, barcode_creator, detail
     var detailCodeId by remember { mutableLongStateOf(0L) }
     var qrInitialType by remember { mutableStateOf("URL") }
+    var qrPrefilledText by remember { mutableStateOf<String?>(null) }
     var barcodeInitialFormat by remember { mutableStateOf("CODE_128") }
 
     val activeScanResult by viewModel.activeScanResult.collectAsState()
@@ -198,13 +204,41 @@ fun QobleyApp(viewModel: MainViewModel) {
                     )
                 )
             }
+            is MainViewModel.NavigationRequest.ScanDocument -> {
+                currentSubScreen = "document"
+            }
+            is MainViewModel.NavigationRequest.CreateTab -> {
+                currentSubScreen = null
+                currentTab = "create"
+            }
             is MainViewModel.NavigationRequest.CreateQr -> {
                 qrInitialType = req.initialType
+                qrPrefilledText = req.prefilledText
                 currentSubScreen = "qr_creator"
             }
             is MainViewModel.NavigationRequest.CreateBarcode -> {
                 barcodeInitialFormat = "CODE_128"
                 currentSubScreen = "barcode_creator"
+            }
+            is MainViewModel.NavigationRequest.CreateFromClipboard -> {
+                val clip = clipboardManager.getText()?.text
+                if (!clip.isNullOrBlank()) {
+                    val parsed = com.example.scanner.PayloadParser.parse(clip, "QR_CODE")
+                    val (cType, cText) = when (parsed) {
+                        is com.example.data.model.ParsedPayload.Url -> "URL" to clip
+                        is com.example.data.model.ParsedPayload.Phone -> "PHONE" to parsed.rawNumber
+                        is com.example.data.model.ParsedPayload.Email -> "EMAIL" to parsed.email
+                        is com.example.data.model.ParsedPayload.Wifi -> "WIFI" to clip
+                        is com.example.data.model.ParsedPayload.Contact -> "CONTACT" to clip
+                        is com.example.data.model.ParsedPayload.Payment -> "PAYMENT" to clip
+                        else -> "TEXT" to clip
+                    }
+                    qrInitialType = cType
+                    qrPrefilledText = cText
+                    currentSubScreen = "qr_creator"
+                } else {
+                    viewModel.showToast("Clipboard is empty")
+                }
             }
             is MainViewModel.NavigationRequest.History -> {
                 currentSubScreen = null
@@ -219,6 +253,19 @@ fun QobleyApp(viewModel: MainViewModel) {
                     val code = viewModel.repository.getById(req.codeId)
                     if (code != null) {
                         viewModel.setActiveScanResult(code)
+                    }
+                }
+            }
+            is MainViewModel.NavigationRequest.ShareCode -> {
+                scope.launch {
+                    val code = viewModel.repository.getById(req.codeId)
+                    if (code != null) {
+                        val sendIntent = Intent().apply {
+                            action = Intent.ACTION_SEND
+                            putExtra(Intent.EXTRA_TEXT, "${code.title}\n${code.content}")
+                            type = "text/plain"
+                        }
+                        context.startActivity(Intent.createChooser(sendIntent, "Share ${code.title}"))
                     }
                 }
             }
@@ -432,8 +479,12 @@ fun QobleyApp(viewModel: MainViewModel) {
                     subScreen == "qr_creator" -> {
                         QrCreatorScreen(
                             initialType = qrInitialType,
+                            prefilledText = qrPrefilledText,
                             viewModel = viewModel,
-                            onBack = { currentSubScreen = null }
+                            onBack = {
+                                currentSubScreen = null
+                                qrPrefilledText = null
+                            }
                         )
                     }
 

@@ -1,0 +1,212 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 960" width="100%" height="100%">
+  <defs>
+    <linearGradient id="creatorBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0B0F19" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <filter id="previewShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Device Screen Canvas -->
+  <rect width="480" height="960" rx="36" fill="url(#creatorBg)"/>
+  <rect x="2" y="2" width="476" height="956" rx="34" fill="none" stroke="#1E293B" stroke-width="3"/>
+
+  <!-- Status Bar -->
+  <text x="32" y="32" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600">09:41</text>
+  <g transform="translate(400, 20)">
+    <path d="M 0 10 A 10 10 0 0 1 14 0 A 10 10 0 0 1 28 10 Z" fill="#94A3B8"/>
+    <rect x="36" y="2" width="22" height="11" rx="2" fill="none" stroke="#94A3B8" stroke-width="1.5"/>
+    <rect x="38" y="4" width="14" height="7" rx="1" fill="#10B981"/>
+    <rect x="58" y="5" width="2" height="5" rx="1" fill="#94A3B8"/>
+  </g>
+
+  <!-- Top App Bar -->
+  <g transform="translate(24, 52)">
+    <circle cx="20" cy="20" r="18" fill="#1E293B"/>
+    <path d="M 24 14 L 16 20 L 24 26" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    
+    <text x="56" y="26" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="700">Creator Studio</text>
+    
+    <rect x="340" y="4" width="76" height="32" rx="8" fill="#2563EB"/>
+    <text x="378" y="24" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" text-anchor="middle">Save</text>
+  </g>
+
+  <!-- Category Selector Chips (Horizontal Scrollable row) -->
+  <g transform="translate(24, 114)">
+    <!-- Wi-Fi (Selected) -->
+    <rect x="0" y="0" width="86" height="34" rx="17" fill="#2563EB"/>
+    <text x="43" y="21" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" text-anchor="middle">📶 Wi-Fi</text>
+
+    <!-- URL -->
+    <rect x="94" y="0" width="80" height="34" rx="17" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <text x="134" y="21" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" text-anchor="middle">🌐 URL</text>
+
+    <!-- vCard -->
+    <rect x="182" y="0" width="94" height="34" rx="17" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <text x="229" y="21" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" text-anchor="middle">👤 Contact</text>
+
+    <!-- Payment -->
+    <rect x="284" y="0" width="98" height="34" rx="17" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <text x="333" y="21" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" text-anchor="middle">💳 Payment</text>
+
+    <!-- Barcode -->
+    <rect x="390" y="0" width="42" height="34" rx="17" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <text x="411" y="21" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" text-anchor="middle">1D</text>
+  </g>
+
+  <!-- Live Code Preview Card -->
+  <g transform="translate(24, 168)" filter="url(#previewShadow)">
+    <rect width="432" height="260" rx="20" fill="#1E293B" stroke="#334155" stroke-width="1.5"/>
+
+    <!-- Left side: Live generated QR bitmap with center emblem -->
+    <g transform="translate(24, 24)">
+      <rect width="212" height="212" rx="12" fill="#FFFFFF"/>
+
+      <!-- QR Patterns -->
+      <g transform="translate(14, 14)">
+        <!-- TL -->
+        <rect x="0" y="0" width="48" height="48" fill="#0F172A" rx="4"/>
+        <rect x="8" y="8" width="32" height="32" fill="#FFFFFF" rx="2"/>
+        <rect x="16" y="16" width="16" height="16" fill="#2563EB" rx="2"/>
+
+        <!-- TR -->
+        <rect x="136" y="0" width="48" height="48" fill="#0F172A" rx="4"/>
+        <rect x="144" y="8" width="32" height="32" fill="#FFFFFF" rx="2"/>
+        <rect x="152" y="16" width="16" height="16" fill="#2563EB" rx="2"/>
+
+        <!-- BL -->
+        <rect x="0" y="136" width="48" height="48" fill="#0F172A" rx="4"/>
+        <rect x="8" y="144" width="32" height="32" fill="#FFFFFF" rx="2"/>
+        <rect x="16" y="152" width="16" height="16" fill="#2563EB" rx="2"/>
+
+        <!-- Modules -->
+        <rect x="64" y="6" width="12" height="12" fill="#0F172A"/>
+        <rect x="88" y="6" width="16" height="12" fill="#0F172A"/>
+        <rect x="114" y="6" width="12" height="12" fill="#0F172A"/>
+        <rect x="64" y="26" width="20" height="14" fill="#0F172A"/>
+        <rect x="96" y="26" width="16" height="14" fill="#2563EB"/>
+
+        <!-- Center Emblem / Logo Cutout -->
+        <circle cx="92" cy="92" r="24" fill="#FFFFFF"/>
+        <circle cx="92" cy="92" r="20" fill="#2563EB"/>
+        <!-- Wi-Fi glyph inside emblem -->
+        <path d="M 82 92 A 12 12 0 0 1 102 92 M 86 96 A 8 8 0 0 1 98 96" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <circle cx="92" cy="100" r="2" fill="#FFFFFF"/>
+
+        <rect x="6" y="64" width="12" height="16" fill="#0F172A"/>
+        <rect x="26" y="64" width="20" height="16" fill="#0F172A"/>
+        <rect x="6" y="96" width="22" height="18" fill="#0F172A"/>
+
+        <rect x="136" y="64" width="24" height="14" fill="#0F172A"/>
+        <rect x="168" y="64" width="16" height="14" fill="#0F172A"/>
+        <rect x="144" y="96" width="20" height="18" fill="#0F172A"/>
+
+        <rect x="64" y="136" width="20" height="18" fill="#0F172A"/>
+        <rect x="96" y="136" width="24" height="18" fill="#0F172A"/>
+        <rect x="64" y="164" width="28" height="18" fill="#0F172A"/>
+        <rect x="104" y="164" width="16" height="18" fill="#0F172A"/>
+        <rect x="136" y="144" width="24" height="20" fill="#0F172A"/>
+        <rect x="168" y="144" width="16" height="20" fill="#0F172A"/>
+      </g>
+    </g>
+
+    <!-- Right Side: Specs & High-Res Details -->
+    <g transform="translate(254, 30)">
+      <text x="0" y="16" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700">WIFI: Guest Network</text>
+      <text x="0" y="38" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">SSID: Guest_Lounge_5G</text>
+      
+      <rect x="0" y="56" width="154" height="26" rx="6" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+      <text x="10" y="73" fill="#10B981" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">✓ Error Level Q (25%)</text>
+
+      <text x="0" y="110" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11">Security: WPA/WPA2/WPA3</text>
+      <text x="0" y="128" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11">Hidden SSID: False</text>
+      <text x="0" y="146" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11">Quiet Zone: 4 modules</text>
+
+      <!-- Pin to Widget button -->
+      <g transform="translate(0, 168)">
+        <rect width="154" height="34" rx="8" fill="#0F172A" stroke="#3B82F6" stroke-width="1"/>
+        <text x="77" y="21" fill="#60A5FA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" text-anchor="middle">📌 Pin to Widget</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Input Form Section -->
+  <g transform="translate(24, 456)">
+    <!-- Field 1: Network Name (SSID) -->
+    <text x="0" y="14" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">NETWORK NAME (SSID)</text>
+    <rect x="0" y="24" width="432" height="46" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <text x="16" y="52" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="500">Guest_Lounge_5G</text>
+
+    <!-- Field 2: Password -->
+    <text x="0" y="96" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">PASSWORD / PASSKEY</text>
+    <rect x="0" y="106" width="432" height="46" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <text x="16" y="134" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="500">••••••••••••••••</text>
+    <text x="410" y="134" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" text-anchor="end">Show</text>
+
+    <!-- Field 3: Encryption Type Selector -->
+    <text x="0" y="178" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">SECURITY PROTOCOL</text>
+    <g transform="translate(0, 188)">
+      <rect x="0" y="0" width="138" height="38" rx="8" fill="#2563EB"/>
+      <text x="69" y="23" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" text-anchor="middle">WPA / WPA2</text>
+
+      <rect x="146" y="0" width="138" height="38" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="215" y="23" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" text-anchor="middle">WEP</text>
+
+      <rect x="292" y="0" width="140" height="38" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="362" y="23" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" text-anchor="middle">Open (None)</text>
+    </g>
+
+    <!-- Customization Palette -->
+    <text x="0" y="254" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">PALETTE &amp; LOGO EMBLEM</text>
+    <g transform="translate(0, 266)">
+      <!-- Swatches -->
+      <circle cx="16" cy="16" r="16" fill="#0F172A" stroke="#3B82F6" stroke-width="2"/>
+      <circle cx="56" cy="16" r="16" fill="#2563EB"/>
+      <circle cx="96" cy="16" r="16" fill="#10B981"/>
+      <circle cx="136" cy="16" r="16" fill="#8B5CF6"/>
+      <circle cx="176" cy="16" r="16" fill="#F59E0B"/>
+      <circle cx="216" cy="16" r="16" fill="#EF4444"/>
+
+      <!-- Center Icon Selector -->
+      <g transform="translate(260, 0)">
+        <rect x="0" y="0" width="172" height="34" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+        <text x="86" y="21" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" text-anchor="middle">Emblem: 📶 Wi-Fi</text>
+      </g>
+    </g>
+
+    <!-- Primary Action: Save to Library & Generate Full-Res -->
+    <g transform="translate(0, 328)">
+      <rect x="0" y="0" width="432" height="50" rx="12" fill="#2563EB"/>
+      <text x="216" y="31" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" text-anchor="middle">Save &amp; Generate Vector Code</text>
+    </g>
+  </g>
+
+  <!-- Bottom Navigation Bar -->
+  <g transform="translate(0, 864)">
+    <rect width="480" height="96" fill="#0B0F19" stroke="#1E293B" stroke-width="1"/>
+    <!-- Scan -->
+    <g transform="translate(60, 16)">
+      <circle cx="32" cy="18" r="8" fill="none" stroke="#94A3B8" stroke-width="2"/>
+      <text x="32" y="48" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" text-anchor="middle">Scan</text>
+    </g>
+    <!-- Create (Active) -->
+    <g transform="translate(170, 16)">
+      <rect x="0" y="0" width="64" height="32" rx="16" fill="#1E3A8A"/>
+      <path d="M 32 10 L 32 26 M 24 18 L 40 18" stroke="#60A5FA" stroke-width="2.5" stroke-linecap="round"/>
+      <text x="32" y="48" fill="#60A5FA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" text-anchor="middle">Create</text>
+    </g>
+    <!-- History -->
+    <g transform="translate(280, 16)">
+      <circle cx="32" cy="18" r="8" fill="none" stroke="#94A3B8" stroke-width="2"/>
+      <polyline points="32 14 32 18 36 20" fill="none" stroke="#94A3B8" stroke-width="1.8" stroke-linecap="round"/>
+      <text x="32" y="48" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" text-anchor="middle">History</text>
+    </g>
+    <!-- Saved -->
+    <g transform="translate(390, 16)">
+      <path d="M 26 12 L 38 12 L 38 26 L 32 22 L 26 26 Z" fill="none" stroke="#94A3B8" stroke-width="2"/>
+      <text x="32" y="48" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" text-anchor="middle">Saved</text>
+    </g>
+  </g>
+</svg>

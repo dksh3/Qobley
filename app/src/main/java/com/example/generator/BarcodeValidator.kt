@@ -146,9 +146,8 @@ object BarcodeValidator {
 
     private fun validateCode39(value: String): ValidationResult {
         val validChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-. $/+%"
-        val upper = value.uppercase()
-        if (upper.any { it !in validChars }) {
-            return ValidationResult.Invalid("Code 39 only allows uppercase letters, digits, and - . $ / + % space")
+        if (value.any { it !in validChars }) {
+            return ValidationResult.Invalid("Code 39 only allows uppercase letters (A-Z), digits, and - . $ / + % space")
         }
         return ValidationResult.Valid
     }

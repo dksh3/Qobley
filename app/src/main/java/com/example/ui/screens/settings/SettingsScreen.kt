@@ -18,13 +18,18 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Check
+import androidx.compose.material.icons.outlined.ContentPaste
 import androidx.compose.material.icons.outlined.DeleteSweep
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material.icons.outlined.Palette
 import androidx.compose.material.icons.outlined.QrCodeScanner
+import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material.icons.outlined.Sensors
+import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material.icons.outlined.Speed
+import androidx.compose.material.icons.outlined.Star
+import androidx.compose.material.icons.outlined.Tune
 import androidx.compose.material.icons.outlined.VolumeUp
 import androidx.compose.material.icons.outlined.Widgets
 import androidx.compose.material3.AlertDialog
@@ -136,15 +141,17 @@ fun SettingsScreen(
                 Spacer(modifier = Modifier.height(24.dp))
 
                 // Quick Access Section
-                SettingsCategoryHeader("Quick Access")
+                SettingsCategoryHeader("Quick Access & Widgets")
 
                 SettingsClickableItem(
                     icon = Icons.Outlined.Speed,
                     title = "Open on launch",
                     subtitle = when (launchScreen) {
-                        "scanner" -> "Scanner"
-                        "create" -> "Create"
-                        else -> "Home screen"
+                        "scanner" -> "Instant Scanner (Direct camera)"
+                        "create" -> "Creator Studio"
+                        "history" -> "Scan History"
+                        "saved" -> "Saved Library"
+                        else -> "Home screen (Default)"
                     },
                     testTag = "setting_launch_item",
                     onClick = { showLaunchDialog = true }
@@ -152,20 +159,58 @@ fun SettingsScreen(
 
                 SettingsClickableItem(
                     icon = Icons.Outlined.Widgets,
-                    title = "Home Screen Widgets & Shortcuts",
-                    subtitle = "Quick scan 1×1, Quick access, and Command center widgets are available on your home screen",
+                    title = "Home Screen Widgets (5 Native Widgets)",
+                    subtitle = "1×1 Quick Scan, Quick Access, Command Center, Favorites, and Pinned QR Code",
                     testTag = "setting_widgets_info_item",
                     onClick = {
                         val ctx = context
                         com.example.widget.QobleyWidgetUpdater.updateAllWidgets(ctx)
-                        viewModel.showToast("Home screen widgets refreshed")
+                        viewModel.showToast("All home screen widgets refreshed")
+                    }
+                )
+
+                SettingsClickableItem(
+                    icon = Icons.Outlined.Tune,
+                    title = "Configure Pinned Code Widget",
+                    subtitle = "Pick which saved code or Wi-Fi QR appears directly on your home screen",
+                    testTag = "setting_configure_widget_item",
+                    onClick = {
+                        val intent = android.content.Intent(context, com.example.widget.QobleyWidgetConfigActivity::class.java)
+                        context.startActivity(intent)
+                    }
+                )
+
+                SettingsClickableItem(
+                    icon = Icons.Outlined.Star,
+                    title = "Launcher Shortcuts (Dynamic)",
+                    subtitle = "Sync your top starred codes into the app icon long-press menu",
+                    testTag = "setting_sync_shortcuts_item",
+                    onClick = {
+                        com.example.util.QobleyShortcutManager.updateDynamicShortcuts(context)
+                        viewModel.showToast("Launcher shortcuts updated with your favorites")
+                    }
+                )
+
+                SettingsClickableItem(
+                    icon = Icons.Outlined.ContentPaste,
+                    title = "Create from Clipboard",
+                    subtitle = "Classify clipboard content (URL, Wi-Fi, Contact, Text) and open Creator",
+                    testTag = "setting_clipboard_action_item",
+                    onClick = {
+                        viewModel.postNavigationRequest(MainViewModel.NavigationRequest.CreateFromClipboard)
                     }
                 )
 
                 SettingsInfoItem(
                     icon = Icons.Outlined.Sensors,
-                    title = "Quick Settings & App Shortcuts",
-                    subtitle = "Long-press the Qobley app icon on your home screen for instant shortcuts, or add the 'Qobley Scan' tile to Android Quick Settings."
+                    title = "Android Quick Settings Tiles",
+                    subtitle = "Swipe down twice from top of screen to add 'Qobley Scan' (instant camera) or 'Qobley Create' directly into Quick Settings."
+                )
+
+                SettingsInfoItem(
+                    icon = Icons.Outlined.Share,
+                    title = "Safe Android Share Target",
+                    subtitle = "Share text, links, or contacts from any browser or app into Qobley. The creator opens prefilled for review without auto-saving."
                 )
 
                 Spacer(modifier = Modifier.height(24.dp))
@@ -254,7 +299,13 @@ fun SettingsScreen(
             title = { Text("Open on Launch") },
             text = {
                 Column {
-                    listOf("home" to "Home screen", "scanner" to "Scanner", "create" to "Create").forEach { (key, label) ->
+                    listOf(
+                        "home" to "Home screen",
+                        "scanner" to "Scanner",
+                        "create" to "Creator Studio",
+                        "history" to "Scan History",
+                        "saved" to "Saved Library"
+                    ).forEach { (key, label) ->
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()

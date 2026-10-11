@@ -74,6 +74,8 @@ object CodeExportHelper {
             sb.append("   Date: ${sdf.format(Date(item.createdAt))}\n")
             if (item.isFavorite) {
                 sb.append("   Starred: Yes ★\n")
+            } else {
+                sb.append("   Starred: No\n")
             }
             sb.append("\n")
         }

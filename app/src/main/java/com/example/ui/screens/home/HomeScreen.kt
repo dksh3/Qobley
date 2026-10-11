@@ -29,9 +29,11 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.QrCodeScanner
+import androidx.compose.material.icons.outlined.ContentPaste
 import androidx.compose.material.icons.outlined.DocumentScanner
 import androidx.compose.material.icons.outlined.Image
 import androidx.compose.material.icons.outlined.Language
+import androidx.compose.material.icons.outlined.Payments
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.QrCode
 import androidx.compose.material.icons.outlined.Settings
@@ -274,18 +276,20 @@ fun HomeScreen(
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     QuickActionChip(
+                        icon = Icons.Outlined.ContentPaste,
+                        label = "Clipboard",
+                        modifier = Modifier.weight(1f),
+                        testTag = "quick_create_clipboard",
+                        onClick = {
+                            viewModel.postNavigationRequest(MainViewModel.NavigationRequest.CreateFromClipboard)
+                        }
+                    )
+                    QuickActionChip(
                         icon = Icons.Outlined.Language,
                         label = "URL",
                         modifier = Modifier.weight(1f),
                         testTag = "quick_create_url",
                         onClick = { onNavigateCreateQr("URL") }
-                    )
-                    QuickActionChip(
-                        icon = Icons.Outlined.TextFields,
-                        label = "Text",
-                        modifier = Modifier.weight(1f),
-                        testTag = "quick_create_text",
-                        onClick = { onNavigateCreateQr("TEXT") }
                     )
                     QuickActionChip(
                         icon = Icons.Outlined.Wifi,
@@ -300,6 +304,13 @@ fun HomeScreen(
                         modifier = Modifier.weight(1f),
                         testTag = "quick_create_contact",
                         onClick = { onNavigateCreateQr("CONTACT") }
+                    )
+                    QuickActionChip(
+                        icon = Icons.Outlined.Payments,
+                        label = "Pay",
+                        modifier = Modifier.weight(1f),
+                        testTag = "quick_create_payment",
+                        onClick = { onNavigateCreateQr("PAYMENT") }
                     )
                 }
                 Spacer(modifier = Modifier.height(32.dp))

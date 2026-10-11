@@ -60,11 +60,15 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     sealed class NavigationRequest {
         object Scanner : NavigationRequest()
         object ScanImage : NavigationRequest()
+        object ScanDocument : NavigationRequest()
+        object CreateTab : NavigationRequest()
         data class CreateQr(val prefilledText: String? = null, val initialType: String = "URL") : NavigationRequest()
         object CreateBarcode : NavigationRequest()
+        object CreateFromClipboard : NavigationRequest()
         object History : NavigationRequest()
         object Saved : NavigationRequest()
         data class ViewDetail(val codeId: Long) : NavigationRequest()
+        data class ShareCode(val codeId: Long) : NavigationRequest()
     }
 
     private val _navigationRequest = MutableStateFlow<NavigationRequest?>(null)

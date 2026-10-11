@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0F19" />
+      <stop offset="50%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#60A5FA" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.9" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="420" fill="url(#bgGrad)" rx="16"/>
+
+  <!-- Subtle Tech Grid Lines -->
+  <g stroke="#334155" stroke-opacity="0.15" stroke-width="1">
+    <line x1="0" y1="70" x2="1200" y2="70"/>
+    <line x1="0" y1="140" x2="1200" y2="140"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="280" x2="1200" y2="280"/>
+    <line x1="0" y1="350" x2="1200" y2="350"/>
+    <line x1="120" y1="0" x2="120" y2="420"/>
+    <line x1="240" y1="0" x2="240" y2="420"/>
+    <line x1="360" y1="0" x2="360" y2="420"/>
+    <line x1="480" y1="0" x2="480" y2="420"/>
+    <line x1="600" y1="0" x2="600" y2="420"/>
+    <line x1="720" y1="0" x2="720" y2="420"/>
+    <line x1="840" y1="0" x2="840" y2="420"/>
+    <line x1="960" y1="0" x2="960" y2="420"/>
+    <line x1="1080" y1="0" x2="1080" y2="420"/>
+  </g>
+
+  <!-- Left Content: Branding & Copy -->
+  <g transform="translate(80, 80)">
+    <!-- Pill Badge -->
+    <rect x="0" y="0" width="220" height="30" rx="15" fill="#1E293B" stroke="#3B82F6" stroke-width="1"/>
+    <circle cx="16" cy="15" r="5" fill="#10B981"/>
+    <text x="32" y="20" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" letter-spacing="1">NATIVE ANDROID 16</text>
+
+    <!-- Main Title -->
+    <text x="0" y="88" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="64" font-weight="800" letter-spacing="-1.5">Qobley</text>
+    <text x="250" y="88" fill="#3B82F6" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="64" font-weight="800">.</text>
+
+    <!-- Tagline -->
+    <text x="0" y="132" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="500">
+      Every code. One place.
+    </text>
+
+    <!-- Sub description -->
+    <text x="0" y="168" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="400">
+      High-performance barcode &amp; QR utility with native home-screen widgets,
+    </text>
+    <text x="0" y="190" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="400">
+      Quick Settings tiles, instant deep linking, and 100% offline privacy.
+    </text>
+
+    <!-- Action Buttons -->
+    <g transform="translate(0, 224)">
+      <!-- Download APK button -->
+      <rect x="0" y="0" width="168" height="42" rx="8" fill="url(#primaryGrad)"/>
+      <path d="M22 21 L28 27 L34 21 M28 14 L28 27 M18 31 L38 31" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <text x="46" y="26" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="700">Download APK</text>
+
+      <!-- GitHub / Source button -->
+      <rect x="180" y="0" width="130" height="42" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="210" y="26" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="600">MIT License</text>
+    </g>
+  </g>
+
+  <!-- Right Visual: High-tech Scanner Viewfinder + Command Widget Card -->
+  <g transform="translate(680, 50)" filter="url(#cardShadow)">
+    <!-- Base card container -->
+    <rect x="0" y="0" width="440" height="320" rx="16" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5"/>
+
+    <!-- Header bar -->
+    <rect x="0" y="0" width="440" height="48" rx="16" fill="#1E293B" fill-opacity="0.8"/>
+    <circle cx="28" cy="24" r="5" fill="#EF4444"/>
+    <circle cx="44" cy="24" r="5" fill="#F59E0B"/>
+    <circle cx="60" cy="24" r="5" fill="#10B981"/>
+    <text x="84" y="29" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="600">Qobley Quick Access Engine</text>
+
+    <!-- Scanner Reticle Graphic -->
+    <g transform="translate(30, 70)">
+      <rect x="0" y="0" width="180" height="180" rx="12" fill="#0B0F19" stroke="#1E293B" stroke-width="1"/>
+      
+      <!-- Reticle corner brackets -->
+      <path d="M 16 36 L 16 16 L 36 16" fill="none" stroke="#3B82F6" stroke-width="3" stroke-linecap="round"/>
+      <path d="M 164 36 L 164 16 L 144 16" fill="none" stroke="#3B82F6" stroke-width="3" stroke-linecap="round"/>
+      <path d="M 16 144 L 16 164 L 36 164" fill="none" stroke="#3B82F6" stroke-width="3" stroke-linecap="round"/>
+      <path d="M 164 144 L 164 164 L 144 164" fill="none" stroke="#3B82F6" stroke-width="3" stroke-linecap="round"/>
+
+      <!-- QR Code Matrix Graphic -->
+      <!-- Finder Pattern Top-Left -->
+      <rect x="36" y="36" width="32" height="32" fill="#FFFFFF" rx="3"/>
+      <rect x="42" y="42" width="20" height="20" fill="#0B0F19" rx="2"/>
+      <rect x="47" y="47" width="10" height="10" fill="#3B82F6" rx="1"/>
+
+      <!-- Finder Pattern Top-Right -->
+      <rect x="112" y="36" width="32" height="32" fill="#FFFFFF" rx="3"/>
+      <rect x="118" y="42" width="20" height="20" fill="#0B0F19" rx="2"/>
+      <rect x="123" y="47" width="10" height="10" fill="#3B82F6" rx="1"/>
+
+      <!-- Finder Pattern Bottom-Left -->
+      <rect x="36" y="112" width="32" height="32" fill="#FFFFFF" rx="3"/>
+      <rect x="42" y="118" width="20" height="20" fill="#0B0F19" rx="2"/>
+      <rect x="47" y="123" width="10" height="10" fill="#3B82F6" rx="1"/>
+
+      <!-- Data Dots -->
+      <rect x="76" y="40" width="8" height="8" fill="#94A3B8"/>
+      <rect x="92" y="40" width="8" height="8" fill="#94A3B8"/>
+      <rect x="76" y="56" width="8" height="8" fill="#38BDF8"/>
+      <rect x="88" y="68" width="12" height="12" fill="#FFFFFF"/>
+      <rect x="112" y="80" width="8" height="8" fill="#94A3B8"/>
+      <rect x="128" y="88" width="8" height="8" fill="#38BDF8"/>
+      <rect x="76" y="112" width="8" height="8" fill="#FFFFFF"/>
+      <rect x="92" y="124" width="12" height="12" fill="#38BDF8"/>
+      <rect x="116" y="120" width="16" height="8" fill="#94A3B8"/>
+
+      <!-- Laser Scanner Line -->
+      <line x1="20" y1="94" x2="160" y2="94" stroke="#60A5FA" stroke-width="2.5" filter="url(#glow)"/>
+      <line x1="20" y1="94" x2="160" y2="94" stroke="#FFFFFF" stroke-width="1.2"/>
+
+      <!-- Scan result badge -->
+      <rect x="10" y="200" width="160" height="28" rx="6" fill="#1E293B" stroke="#10B981" stroke-width="1"/>
+      <circle cx="24" cy="214" r="4" fill="#10B981"/>
+      <text x="36" y="218" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">DECODED &lt; 18ms</text>
+    </g>
+
+    <!-- Right Side: Interactive Quick Actions & Widgets Preview -->
+    <g transform="translate(230, 70)">
+      <text x="0" y="16" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" letter-spacing="1">COMMAND WIDGET</text>
+      
+      <!-- Quick Action 1: Instant Scan -->
+      <rect x="0" y="28" width="180" height="36" rx="8" fill="#2563EB"/>
+      <text x="14" y="51" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">📷 Quick Scan (1×1)</text>
+
+      <!-- Quick Action 2: Starred Wi-Fi -->
+      <rect x="0" y="74" width="180" height="36" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="14" y="97" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">📶 Home Wi-Fi QR</text>
+
+      <!-- Quick Action 3: Creator Studio -->
+      <rect x="0" y="120" width="180" height="36" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="14" y="143" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">✨ Create Barcode</text>
+
+      <!-- Quick Action 4: Tile Service -->
+      <rect x="0" y="166" width="180" height="36" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="14" y="189" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">⚡ Quick Settings Tile</text>
+    </g>
+
+    <!-- Card Footer -->
+    <line x1="0" y1="272" x2="440" y2="272" stroke="#1E293B" stroke-width="1"/>
+    <text x="28" y="296" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11">Zero Trackers • On-Device Room DB • CameraX</text>
+  </g>
+</svg>

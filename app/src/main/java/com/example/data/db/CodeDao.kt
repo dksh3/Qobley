@@ -43,11 +43,20 @@ interface CodeDao {
     @Query("SELECT * FROM codes ORDER BY createdAt DESC LIMIT :limit")
     fun getRecentSync(limit: Int = 10): List<CodeItem>
 
+    @Query("SELECT * FROM codes WHERE isFavorite = 1 ORDER BY createdAt DESC LIMIT :limit")
+    fun getFavoritesSync(limit: Int = 10): List<CodeItem>
+
+    @Query("SELECT * FROM codes WHERE isSaved = 1 OR isFavorite = 1 OR source = 'GENERATED' ORDER BY createdAt DESC LIMIT :limit")
+    fun getSavedLibrarySync(limit: Int = 20): List<CodeItem>
+
     @Query("SELECT * FROM codes ORDER BY createdAt DESC LIMIT :limit")
     suspend fun getRecentList(limit: Int = 10): List<CodeItem>
 
     @Query("SELECT * FROM codes WHERE id = :id LIMIT 1")
     suspend fun getById(id: Long): CodeItem?
+
+    @Query("SELECT * FROM codes WHERE id = :id LIMIT 1")
+    fun getByIdSync(id: Long): CodeItem?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(item: CodeItem): Long

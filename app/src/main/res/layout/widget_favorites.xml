@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_fav_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_widget_container"
+    android:padding="14dp">
+
+    <!-- Header bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_widget_star"
+            android:contentDescription="Star" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            android:text="Qobley Favorites"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/widget_fav_saved_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Library →"
+            android:textColor="#3B82F6"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp" />
+
+    <!-- Empty state view -->
+    <LinearLayout
+        android:id="@+id/widget_fav_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="★ No Favorites Starred"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Star any code to pin it right here."
+            android:textColor="#94A3B8"
+            android:textSize="11sp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/widget_fav_empty_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_widget_button_secondary"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="6dp"
+            android:text="Open Qobley"
+            android:textColor="#FFFFFF"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true" />
+    </LinearLayout>
+
+    <!-- Item 1 -->
+    <LinearLayout
+        android:id="@+id/widget_fav_item_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="38dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_widget_item"
+        android:padding="6dp"
+        android:layout_marginBottom="4dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:src="@drawable/ic_widget_star"
+            android:contentDescription="Favorite" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/widget_fav_title_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home Wi-Fi"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/widget_fav_preview_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WPA2 Wireless network"
+                android:textColor="#94A3B8"
+                android:textSize="10sp"
+                android:maxLines="1"
+                android:ellipsize="end" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/widget_fav_type_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WIFI"
+            android:textColor="#3B82F6"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:background="#1E293B"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="2dp" />
+    </LinearLayout>
+
+    <!-- Item 2 -->
+    <LinearLayout
+        android:id="@+id/widget_fav_item_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="38dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_widget_item"
+        android:padding="6dp"
+        android:layout_marginBottom="4dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:src="@drawable/ic_widget_star"
+            android:contentDescription="Favorite" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/widget_fav_title_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Qobley Website"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/widget_fav_preview_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="https://qobley.vercel.app"
+                android:textColor="#94A3B8"
+                android:textSize="10sp"
+                android:maxLines="1"
+                android:ellipsize="end" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/widget_fav_type_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="URL"
+            android:textColor="#10B981"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:background="#064E3B"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="2dp" />
+    </LinearLayout>
+
+    <!-- Item 3 -->
+    <LinearLayout
+        android:id="@+id/widget_fav_item_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="38dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_widget_item"
+        android:padding="6dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:src="@drawable/ic_widget_star"
+            android:contentDescription="Favorite" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/widget_fav_title_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Payment QR"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/widget_fav_preview_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UPI payment address"
+                android:textColor="#94A3B8"
+                android:textSize="10sp"
+                android:maxLines="1"
+                android:ellipsize="end" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/widget_fav_type_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PAY"
+            android:textColor="#F59E0B"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:background="#451A03"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="2dp" />
+    </LinearLayout>
+</LinearLayout>
