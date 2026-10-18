@@ -2,7 +2,11 @@ package com.example.ui.screens.scanner
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
 import androidx.activity.compose.BackHandler
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
@@ -32,7 +36,7 @@ import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.FileDownload
 import androidx.compose.material.icons.outlined.QrCode
-import androidx.compose.material.icons.outlined.ViewWeek
+import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -45,6 +49,7 @@ import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -76,8 +81,24 @@ fun BatchScanScreen(
 
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
-    val batchItems by viewModel.batchItems.collectAsState()
-    val duplicatePrevention by viewModel.settingsRepo.duplicatePrevention.collectAsState()
+    var hasCameraPermission by remember { mutableStateOf(false) }
+    val permissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        hasCameraPermission = isGranted
+        if (!isGranted) {
+            viewModel.showToast("Camera permission is required for batch inventory scanning")
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        val permission = android.Manifest.permission.CAMERA
+        if (ContextCompat.checkSelfPermission(context, permission) == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            hasCameraPermission = true
+        } else {
+            permissionLauncher.launch(permission)
+        }
+    }
 
     val cameraExecutor = remember { Executors.newSingleThreadExecutor() }
     val analyzer = remember {
@@ -145,50 +166,97 @@ fun BatchScanScreen(
                 .background(Color.Black, RoundedCornerShape(14.dp)),
             contentAlignment = Alignment.Center
         ) {
-            AndroidView(
-                factory = { ctx ->
-                    val previewView = PreviewView(ctx)
-                    val cameraProviderFuture = ProcessCameraProvider.getInstance(ctx)
+            if (hasCameraPermission) {
+                AndroidView(
+                    factory = { ctx ->
+                        val previewView = PreviewView(ctx)
+                        val cameraProviderFuture = ProcessCameraProvider.getInstance(ctx)
 
-                    cameraProviderFuture.addListener({
-                        val cameraProvider = cameraProviderFuture.get()
-                        val preview = Preview.Builder().build().also {
-                            it.surfaceProvider = previewView.surfaceProvider
-                        }
-
-                        val imageAnalysis = ImageAnalysis.Builder()
-                            .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-                            .build()
-                            .also {
-                                it.setAnalyzer(cameraExecutor, analyzer)
+                        cameraProviderFuture.addListener({
+                            val cameraProvider = cameraProviderFuture.get()
+                            val preview = Preview.Builder().build().also {
+                                it.surfaceProvider = previewView.surfaceProvider
                             }
 
-                        val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+                            val imageAnalysis = ImageAnalysis.Builder()
+                                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                                .build()
+                                .also {
+                                    it.setAnalyzer(cameraExecutor, analyzer)
+                                }
 
-                        try {
-                            cameraProvider.unbindAll()
-                            cameraProvider.bindToLifecycle(
-                                lifecycleOwner,
-                                cameraSelector,
-                                preview,
-                                imageAnalysis
-                            )
-                        } catch (e: Exception) {
-                            e.printStackTrace()
+                            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+
+                            try {
+                                cameraProvider.unbindAll()
+                                cameraProvider.bindToLifecycle(
+                                    lifecycleOwner,
+                                    cameraSelector,
+                                    preview,
+                                    imageAnalysis
+                                )
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }, ContextCompat.getMainExecutor(ctx))
+
+                        previewView
+                    },
+                    modifier = Modifier.fillMaxSize()
+                )
+
+                // Scanning crosshair
+                Box(
+                    modifier = Modifier
+                        .size(160.dp)
+                        .border(2.dp, Color.White.copy(alpha = 0.8f), RoundedCornerShape(12.dp))
+                )
+            } else {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
+                    modifier = Modifier.padding(20.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.CameraAlt,
+                        contentDescription = null,
+                        tint = Color.White,
+                        modifier = Modifier.size(36.dp)
+                    )
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Text(
+                        text = "Camera Permission Required",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Color.White
+                    )
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Text(
+                        text = "Allow camera access to continuously scan barcodes in bulk.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Color(0xFFA1A1AA)
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                        Button(
+                            onClick = { permissionLauncher.launch(android.Manifest.permission.CAMERA) },
+                            modifier = Modifier.testTag("batch_grant_permission_button")
+                        ) {
+                            Text("Grant Permission")
                         }
-                    }, ContextCompat.getMainExecutor(ctx))
-
-                    previewView
-                },
-                modifier = Modifier.fillMaxSize()
-            )
-
-            // Scanning crosshair
-            Box(
-                modifier = Modifier
-                    .size(160.dp)
-                    .border(2.dp, Color.White.copy(alpha = 0.8f), RoundedCornerShape(12.dp))
-            )
+                        OutlinedButton(
+                            onClick = {
+                                val intent = Intent(
+                                    Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                    Uri.fromParts("package", context.packageName, null)
+                                )
+                                context.startActivity(intent)
+                            }
+                        ) {
+                            Text("Settings", color = Color.White)
+                        }
+                    }
+                }
+            }
         }
 
         Spacer(modifier = Modifier.height(12.dp))

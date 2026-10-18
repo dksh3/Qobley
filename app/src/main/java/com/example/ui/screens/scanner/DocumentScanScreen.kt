@@ -30,9 +30,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material.icons.filled.DocumentScanner
 import androidx.compose.material.icons.filled.PhotoLibrary
+import androidx.core.content.ContextCompat
 import androidx.compose.material.icons.outlined.ContentCopy
 import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material3.Button
@@ -85,6 +86,56 @@ fun DocumentScanScreen(
     var extractedText by remember { mutableStateOf<String?>(null) }
     var detectedEntities by remember { mutableStateOf<List<String>>(emptyList()) }
 
+    fun processBitmap(bitmap: Bitmap) {
+        scope.launch(Dispatchers.IO) {
+            try {
+                originalBitmap = bitmap
+                enhancedBitmap = applyFilter(bitmap, currentFilter)
+
+                // Check for any barcodes/QRs in the document first
+                val detected = BarcodeDecoder.decodeBitmap(bitmap)
+                val entityList = mutableListOf<String>()
+                detected.forEach {
+                    entityList.add("Code found: [${it.format}] ${it.content}")
+                }
+
+                // Heuristic text parsing
+                val text = if (detected.isNotEmpty()) {
+                    detected.joinToString("\n\n") { "Code payload:\n${it.content}" }
+                } else {
+                    "Document captured. Resolution: ${bitmap.width}x${bitmap.height} px."
+                }
+
+                withContext(Dispatchers.Main) {
+                    extractedText = text
+                    detectedEntities = entityList
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    viewModel.showToast("Could not process document: ${e.message}")
+                }
+            }
+        }
+    }
+
+    val takePictureLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.TakePicturePreview()
+    ) { bitmap ->
+        if (bitmap != null) {
+            processBitmap(bitmap)
+        }
+    }
+
+    val cameraPermissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            takePictureLauncher.launch(null)
+        } else {
+            viewModel.showToast("Camera permission is required to capture documents")
+        }
+    }
+
     val photoPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia()
     ) { uri ->
@@ -95,31 +146,11 @@ fun DocumentScanScreen(
                     val bitmap = BitmapFactory.decodeStream(stream)
                     stream?.close()
                     if (bitmap != null) {
-                        originalBitmap = bitmap
-                        enhancedBitmap = applyFilter(bitmap, currentFilter)
-
-                        // Check for any barcodes/QRs in the document first
-                        val detected = BarcodeDecoder.decodeBitmap(bitmap)
-                        val entityList = mutableListOf<String>()
-                        detected.forEach {
-                            entityList.add("Code found: [${it.format}] ${it.content}")
-                        }
-
-                        // Heuristic text parsing
-                        val text = if (detected.isNotEmpty()) {
-                            detected.joinToString("\n\n") { "Code payload:\n${it.content}" }
-                        } else {
-                            "Document captured. Resolution: ${bitmap.width}x${bitmap.height} px."
-                        }
-
-                        withContext(Dispatchers.Main) {
-                            extractedText = text
-                            detectedEntities = entityList
-                        }
+                        processBitmap(bitmap)
                     }
                 } catch (e: Exception) {
                     withContext(Dispatchers.Main) {
-                        viewModel.showToast("Could not process document: ${e.message}")
+                        viewModel.showToast("Could not read image: ${e.message}")
                     }
                 }
             }
@@ -294,22 +325,44 @@ fun DocumentScanScreen(
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                         Spacer(modifier = Modifier.height(20.dp))
-                        Button(
-                            onClick = {
-                                photoPickerLauncher.launch(
-                                    PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
-                                )
-                            },
-                            shape = RoundedCornerShape(10.dp),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = MaterialTheme.colorScheme.primary,
-                                contentColor = MaterialTheme.colorScheme.onPrimary
-                            ),
-                            modifier = Modifier.testTag("pick_document_button")
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(10.dp),
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Icon(imageVector = Icons.Default.PhotoLibrary, contentDescription = null, modifier = Modifier.size(18.dp))
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text("Choose Image")
+                            Button(
+                                onClick = {
+                                    val perm = android.Manifest.permission.CAMERA
+                                    if (ContextCompat.checkSelfPermission(context, perm) == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                                        takePictureLauncher.launch(null)
+                                    } else {
+                                        cameraPermissionLauncher.launch(perm)
+                                    }
+                                },
+                                shape = RoundedCornerShape(10.dp),
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = MaterialTheme.colorScheme.primary,
+                                    contentColor = MaterialTheme.colorScheme.onPrimary
+                                ),
+                                modifier = Modifier.testTag("capture_document_camera_button")
+                            ) {
+                                Icon(imageVector = Icons.Default.CameraAlt, contentDescription = null, modifier = Modifier.size(18.dp))
+                                Spacer(modifier = Modifier.width(6.dp))
+                                Text("Camera Capture")
+                            }
+
+                            OutlinedButton(
+                                onClick = {
+                                    photoPickerLauncher.launch(
+                                        PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                                    )
+                                },
+                                shape = RoundedCornerShape(10.dp),
+                                modifier = Modifier.testTag("pick_document_button")
+                            ) {
+                                Icon(imageVector = Icons.Default.PhotoLibrary, contentDescription = null, modifier = Modifier.size(18.dp))
+                                Spacer(modifier = Modifier.width(6.dp))
+                                Text("Photos")
+                            }
                         }
                     }
                 }

@@ -128,6 +128,38 @@ All screenshots below are rendered directly from the live native Android layout 
 
 ---
 
+## 13 Industry Code Formats Supported (Instant 60 FPS Hardware Engine)
+
+Qobley is engineered with a continuous hardware-accelerated CameraX decoding pipeline. Every viewfinder frame is analyzed against **13 concurrent barcode and 2D matrix decoders** simultaneously. Users never have to manually select a format: point the camera at any package, retail item, ticket, document, or screen, and it decodes instantly.
+
+| Standard Format | Category | Specification & Density | Real-World Industry Application | Instant Action in Qobley |
+| :--- | :--- | :--- | :--- | :--- |
+| **QR Code** | 2D Matrix | Up to 7,089 numeric / 4,296 alphanumeric; ECC Level L–H | Websites, Wi-Fi credentials, vCard contacts, UPI payments, 2FA setup | 1-Tap Wi-Fi connect, Open URL, Pay, Save Contact |
+| **Aztec Code** | 2D Matrix | Compact matrix with central bullseye finder; zero quiet zone | Mobile airline boarding passes, European railway e-tickets, healthcare | Direct ticket verification, copy payload, detail view |
+| **Data Matrix** | 2D Matrix | High-density 2D matrix; ECC 200 error correction | Micro-electronics, surgical instruments, aerospace defense, pharmaceuticals | Serial verification, technical spec lookup, export |
+| **PDF-417** | 2D Stacked | Multi-row stacked 2D barcode holding >1 KB of data | Government driver licenses, state IDs, FedEx/USPS postal shipping labels | Identity data extraction, shipment tracking |
+| **Code 128** | 1D Linear | High-density linear encoding all 128 ASCII characters | E-commerce packages (Amazon, FedEx, DHL), warehouse inventory | Quick copy, batch inventory addition, share |
+| **EAN-13** | 1D Linear | 13-digit global retail standard with Modulo 10 check | Supermarket point-of-sale, consumer merchandise packaging, ISBN books | Retail price check, web search, inventory count |
+| **UPC-A** | 1D Linear | 12-digit North American retail standard with Luhn check | US and Canadian retail checkout, department stores, groceries | Product lookup, web search, inventory tally |
+| **Code 39** | 1D Linear | Discrete alphanumeric standard with start/stop asterisks | Automotive parts manufacturing, US DoD LOGMARS inventory, employee badges | Industrial asset tracking, serial cataloging |
+| **Code 93** | 1D Linear | High-density companion to Code 39 with full ASCII support | Postal parcel delivery, laboratory diagnostic specimens, hardware parts | Specimen logging, batch scan export |
+| **EAN-8** | 1D Linear | Compressed 8-digit retail code for small merchandise | Confectionery, cosmetics, chewing gum, compact retail goods | Compact product lookup, inventory cataloging |
+| **UPC-E** | 1D Linear | 6-digit zero-suppressed North American retail code | Pocket-sized retail merchandise, soda cans, travel amenities | Retail checkout lookup, inventory tally |
+| **Codabar** | 1D Linear | Self-checking linear code with start/stop A, B, C, D | Blood bank donor bags, medical pathology labs, library book management | Medical specimen tracking, library check-in |
+| **ITF (2 of 5)**| 1D Linear | Continuous 2-width numeric barcode on corrugated cases | Shipping cartons, warehouse master packaging, freight distribution pallets | Master carton tracking, pallet quantity logging |
+
+### Pro Scanning & OS Capabilities
+* **Continuous 60 FPS Viewfinder:** Full-frame camera vision without artificial square bounding boxes. Pinch to zoom up to 5×, tap-to-focus, and hardware flashlight toggle.
+* **Multi-Code Simultaneous Detection:** Detects and flags multiple codes in a single camera frame with numbered interactive circular markers.
+* **High-Speed Batch Inventory Mode:** Continuous scanning tailored for retail inventory counts and warehouses, complete with real-time tally, duplicate filtering, and instant CSV/JSON exports.
+* **High-Contrast Document Scanner:** Captures receipts, invoices, and physical documents with black-and-white clarity enhancement and automatic embedded code extraction.
+* **Strict Android OS Permission Model:** 
+  * Camera access requires clear, transparent runtime permission rationale with direct fallback to the system settings page (`Settings.ACTION_APPLICATION_DETAILS_SETTINGS`).
+  * Android Photo Picker integration ensures zero broad storage permissions (`READ_EXTERNAL_STORAGE` is never demanded).
+  * 100% on-device processing: zero frames, zero telemetry, and zero barcode contents are ever transmitted to any remote server.
+
+---
+
 ## The Universal Maker & Customization Studio
 
 Qobley features a powerful on-device code generator that turns barcodes and QR codes into polished, brandable assets while guaranteeing **100% scannability**.

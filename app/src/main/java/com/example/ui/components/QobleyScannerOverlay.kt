@@ -63,6 +63,7 @@ fun QobleyScannerOverlay(
     detectedHighlight: ScannedItem? = null,
     multipleDetections: List<ScannedItem>? = null,
     onSelectDetection: (ScannedItem) -> Unit = {},
+    onShowFormats: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     BoxWithConstraints(modifier = modifier.fillMaxSize()) {
@@ -157,7 +158,7 @@ fun QobleyScannerOverlay(
             }
         }
 
-        // 3. Minimal Top Bar: Back & Gallery
+        // 3. Minimal Top Bar: Back, 13 Formats Active badge & Gallery
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -181,6 +182,34 @@ fun QobleyScannerOverlay(
                         contentDescription = "Back",
                         tint = Color.White,
                         modifier = Modifier.size(22.dp)
+                    )
+                }
+            }
+
+            // 13 Formats Active Advertisement & Specifications Pill
+            Surface(
+                shape = RoundedCornerShape(20.dp),
+                color = Color(0x77000000),
+                modifier = Modifier
+                    .clip(RoundedCornerShape(20.dp))
+                    .clickable { onShowFormats() }
+                    .testTag("scanner_formats_badge")
+            ) {
+                Row(
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(7.dp)
+                            .background(Color(0xFF10B981), CircleShape)
+                    )
+                    Spacer(modifier = Modifier.width(6.dp))
+                    Text(
+                        text = "13 Formats Active",
+                        style = MaterialTheme.typography.labelSmall,
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color.White
                     )
                 }
             }

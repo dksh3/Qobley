@@ -60,7 +60,17 @@ import androidx.core.content.ContextCompat
 import com.example.MainViewModel
 import com.example.scanner.BarcodeAnalyzer
 import com.example.scanner.ScannedItem
+import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
+import androidx.compose.material.icons.filled.CameraAlt
+import androidx.compose.material.icons.filled.PhotoLibrary
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedButton
 import com.example.ui.components.QobleyScannerOverlay
+import com.example.ui.components.SupportedFormatsDialog
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
@@ -88,6 +98,7 @@ fun ScannerScreen(
     // Instant detection highlight (result indicator) & multi-code markers
     var detectedHighlight by remember { mutableStateOf<ScannedItem?>(null) }
     var liveMultipleDetections by remember { mutableStateOf<List<ScannedItem>?>(null) }
+    var showFormatsDialog by remember { mutableStateOf(false) }
 
     val multipleDetectionsDialog by viewModel.multipleDetections.collectAsState()
     val activeScanResult by viewModel.activeScanResult.collectAsState()
@@ -259,31 +270,111 @@ fun ScannerScreen(
                     }
             )
         } else {
-            // Permission request screen
+            // Android OS Native Material 3 Permission Rationale Card
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(32.dp),
+                    .padding(24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Text(
-                    text = "Camera Permission Required",
-                    style = MaterialTheme.typography.titleLarge,
-                    color = Color.White
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = "Qobley needs camera access to point and scan codes. Scans stay strictly on this device.",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = Color(0xFFA1A1AA)
-                )
-                Spacer(modifier = Modifier.height(24.dp))
-                TextButton(
-                    onClick = { permissionLauncher.launch(android.Manifest.permission.CAMERA) },
-                    modifier = Modifier.testTag("request_camera_permission_button")
+                Surface(
+                    shape = RoundedCornerShape(24.dp),
+                    color = MaterialTheme.colorScheme.surface,
+                    tonalElevation = 6.dp,
+                    modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text("Grant Permission", color = Color.White)
+                    Column(
+                        modifier = Modifier.padding(24.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Surface(
+                            shape = CircleShape,
+                            color = MaterialTheme.colorScheme.primaryContainer,
+                            modifier = Modifier.size(56.dp)
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Icon(
+                                    imageVector = Icons.Default.CameraAlt,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.primary,
+                                    modifier = Modifier.size(28.dp)
+                                )
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        Text(
+                            text = "Camera Permission Required",
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.SemiBold,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        Text(
+                            text = "Android requires camera access for Qobley to detect QR codes, barcodes, and tickets in real-time. Frames are processed entirely on-device and are never saved or sent to any server.",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+
+                        Spacer(modifier = Modifier.height(24.dp))
+
+                        Button(
+                            onClick = { permissionLauncher.launch(android.Manifest.permission.CAMERA) },
+                            shape = RoundedCornerShape(12.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .testTag("request_camera_permission_button")
+                        ) {
+                            Text("Grant Camera Permission")
+                        }
+
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        OutlinedButton(
+                            onClick = {
+                                val intent = Intent(
+                                    Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                    Uri.fromParts("package", context.packageName, null)
+                                )
+                                context.startActivity(intent)
+                            },
+                            shape = RoundedCornerShape(12.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .testTag("open_settings_permission_button")
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Settings,
+                                contentDescription = null,
+                                modifier = Modifier.size(18.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text("Open App Settings")
+                        }
+
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        TextButton(
+                            onClick = {
+                                photoPickerLauncher.launch(
+                                    PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                                )
+                            },
+                            modifier = Modifier.testTag("scan_gallery_fallback_button")
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.PhotoLibrary,
+                                contentDescription = null,
+                                modifier = Modifier.size(18.dp)
+                            )
+                            Spacer(modifier = Modifier.width(6.dp))
+                            Text("Scan Image from Gallery Instead")
+                        }
+                    }
                 }
             }
         }
@@ -322,8 +413,16 @@ fun ScannerScreen(
                 liveMultipleDetections = null
                 analyzer.isPaused = true
                 viewModel.handleScannedCode(selected.content, selected.format)
+            },
+            onShowFormats = {
+                showFormatsDialog = true
             }
         )
+    }
+
+    // Supported formats specification dialog
+    if (showFormatsDialog) {
+        SupportedFormatsDialog(onDismiss = { showFormatsDialog = false })
     }
 
     // Imported image multiple detections dialog

@@ -32,16 +32,31 @@ import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material.icons.outlined.Tune
 import androidx.compose.material.icons.outlined.VolumeUp
 import androidx.compose.material.icons.outlined.Widgets
+import android.content.Intent
+import android.net.Uri
+import android.provider.Settings as AndroidSettings
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.filled.CameraAlt
+import androidx.compose.material.icons.outlined.CheckCircle
+import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material.icons.outlined.PhotoLibrary
+import androidx.compose.material.icons.outlined.Security
+import androidx.compose.material.icons.outlined.ViewWeek
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.core.content.ContextCompat
+import com.example.ui.components.SupportedFormatsDialog
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -72,6 +87,35 @@ fun SettingsScreen(
     var showThemeDialog by remember { mutableStateOf(false) }
     var showLaunchDialog by remember { mutableStateOf(false) }
     var showClearHistoryDialog by remember { mutableStateOf(false) }
+    var showFormatsDialog by remember { mutableStateOf(false) }
+
+    var cameraGranted by remember {
+        mutableStateOf(
+            ContextCompat.checkSelfPermission(context, android.Manifest.permission.CAMERA) == android.content.pm.PackageManager.PERMISSION_GRANTED
+        )
+    }
+
+    val cameraPermissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        cameraGranted = granted
+    }
+
+    var notificationGranted by remember {
+        mutableStateOf(
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+                ContextCompat.checkSelfPermission(context, android.Manifest.permission.POST_NOTIFICATIONS) == android.content.pm.PackageManager.PERMISSION_GRANTED
+            } else {
+                true
+            }
+        )
+    }
+
+    val notificationPermissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        notificationGranted = granted
+    }
 
     Column(
         modifier = modifier
@@ -119,6 +163,31 @@ fun SettingsScreen(
                     checked = duplicatePrevention,
                     testTag = "setting_duplicate_switch",
                     onCheckedChange = { viewModel.settingsRepo.setDuplicatePrevention(it) }
+                )
+
+                Spacer(modifier = Modifier.height(24.dp))
+
+                // Engine Capabilities & Formats Section
+                SettingsCategoryHeader("Engine Capabilities & Formats")
+
+                SettingsClickableItem(
+                    icon = Icons.Outlined.CheckCircle,
+                    title = "13 Supported Formats (Active)",
+                    subtitle = "QR Code, Aztec, Data Matrix, PDF-417, EAN-13, UPC-A, Code 128, Code 39, ITF, Codabar, UPC-E, EAN-8, Code 93",
+                    testTag = "setting_formats_spec_item",
+                    onClick = { showFormatsDialog = true }
+                )
+
+                SettingsInfoItem(
+                    icon = Icons.Outlined.QrCodeScanner,
+                    title = "Continuous 60 FPS Multi-Format Engine",
+                    subtitle = "Feeds full-frame camera preview directly into 13 hardware-accelerated decoders with zero manual format switching."
+                )
+
+                SettingsInfoItem(
+                    icon = Icons.Outlined.ViewWeek,
+                    title = "Multi-Code & Batch Inventory",
+                    subtitle = "Real-time detection of multiple barcodes in a single frame with interactive tap-to-select and bulk CSV/JSON export."
                 )
 
                 Spacer(modifier = Modifier.height(24.dp))
@@ -230,6 +299,67 @@ fun SettingsScreen(
                     icon = Icons.Outlined.Lock,
                     title = "100% On-Device",
                     subtitle = "All camera processing, decoding, and saved codes remain entirely local to your device with zero cloud tracking or telemetry."
+                )
+
+                Spacer(modifier = Modifier.height(24.dp))
+
+                // Permissions & System Access Section
+                SettingsCategoryHeader("Android System Permissions & Access")
+
+                SettingsClickableItem(
+                    icon = Icons.Default.CameraAlt,
+                    title = "Camera Access",
+                    subtitle = if (cameraGranted) "Granted · Instant 60 FPS real-time scanner active" else "Not granted · Tap to grant permission",
+                    testTag = "setting_camera_permission_item",
+                    onClick = {
+                        if (!cameraGranted) {
+                            cameraPermissionLauncher.launch(android.Manifest.permission.CAMERA)
+                        } else {
+                            val intent = Intent(
+                                AndroidSettings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                Uri.fromParts("package", context.packageName, null)
+                            )
+                            context.startActivity(intent)
+                        }
+                    }
+                )
+
+                SettingsInfoItem(
+                    icon = Icons.Outlined.PhotoLibrary,
+                    title = "Photo & Gallery Access",
+                    subtitle = "Zero-permission Android Photo Picker active. Fully complies with Google Play private storage policies."
+                )
+
+                SettingsClickableItem(
+                    icon = Icons.Outlined.Notifications,
+                    title = "System Notifications",
+                    subtitle = if (notificationGranted) "Granted · Batch inventory & export alerts active" else "Tap to grant notification permission",
+                    testTag = "setting_notifications_permission_item",
+                    onClick = {
+                        if (!notificationGranted && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+                            notificationPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+                        } else {
+                            val intent = Intent(
+                                AndroidSettings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                Uri.fromParts("package", context.packageName, null)
+                            )
+                            context.startActivity(intent)
+                        }
+                    }
+                )
+
+                SettingsClickableItem(
+                    icon = Icons.Outlined.Security,
+                    title = "Manage in Android Settings",
+                    subtitle = "Open system App Info to review all Android OS permissions, battery optimization, and app defaults",
+                    testTag = "setting_open_system_settings_item",
+                    onClick = {
+                        val intent = Intent(
+                            AndroidSettings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                            Uri.fromParts("package", context.packageName, null)
+                        )
+                        context.startActivity(intent)
+                    }
                 )
 
                 Spacer(modifier = Modifier.height(24.dp))
@@ -365,6 +495,10 @@ fun SettingsScreen(
                 }
             }
         )
+    }
+
+    if (showFormatsDialog) {
+        SupportedFormatsDialog(onDismiss = { showFormatsDialog = false })
     }
 }
 
