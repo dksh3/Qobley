@@ -68,7 +68,7 @@ fun CreateScreen(
     var selectedTabIndex by remember { mutableIntStateOf(0) }
     var searchQuery by remember { mutableStateOf("") }
     var selectedCategoryFilter by remember { mutableStateOf("All") }
-    val tabs = listOf("Universal QR Studio", "Barcodes & 2D Formats")
+    val tabs = listOf("QR Codes", "Barcodes")
 
     Column(
         modifier = modifier

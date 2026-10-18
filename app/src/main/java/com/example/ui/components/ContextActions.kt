@@ -47,9 +47,11 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.data.model.ParsedPayload
 import com.example.scanner.PayloadParser
+import com.example.util.WifiConnectHelper
 
 @Composable
 fun ContextActionButtons(
@@ -82,7 +84,7 @@ fun ContextActionButtons(
             is ParsedPayload.Phone -> {
                 PrimaryActionButton(
                     icon = Icons.Outlined.Call,
-                    label = "Call ${parsed.formattedNumber}",
+                    label = "Call",
                     testTag = "action_call_phone",
                     onClick = { dialPhone(context, parsed.rawNumber, onToast) }
                 )
@@ -91,7 +93,7 @@ fun ContextActionButtons(
             is ParsedPayload.Email -> {
                 PrimaryActionButton(
                     icon = Icons.Outlined.Email,
-                    label = "Compose Email",
+                    label = "Send Email",
                     testTag = "action_compose_email",
                     onClick = { sendEmail(context, parsed.email, parsed.subject, parsed.body, onToast) }
                 )
@@ -99,12 +101,18 @@ fun ContextActionButtons(
 
             is ParsedPayload.Wifi -> {
                 PrimaryActionButton(
-                    icon = Icons.Outlined.ContentCopy,
-                    label = "Copy Wi-Fi Password",
-                    testTag = "action_copy_wifi_pass",
+                    icon = Icons.Outlined.Wifi,
+                    label = "Connect Wi-Fi",
+                    testTag = "action_connect_wifi",
                     onClick = {
-                        clipboardManager.setText(AnnotatedString(parsed.password))
-                        onToast("Wi-Fi password copied")
+                        WifiConnectHelper.connectToWifi(
+                            context = context,
+                            ssid = parsed.ssid,
+                            password = parsed.password,
+                            security = parsed.security,
+                            hidden = parsed.isHidden,
+                            onFeedback = onToast
+                        )
                     }
                 )
             }
@@ -112,7 +120,7 @@ fun ContextActionButtons(
             is ParsedPayload.Contact -> {
                 PrimaryActionButton(
                     icon = Icons.Outlined.PersonAdd,
-                    label = "Save to Contacts",
+                    label = "Add Contact",
                     testTag = "action_save_contact",
                     onClick = {
                         addContact(
@@ -129,7 +137,7 @@ fun ContextActionButtons(
             is ParsedPayload.Payment -> {
                 PrimaryActionButton(
                     icon = Icons.Outlined.Payment,
-                    label = if (!parsed.amount.isNullOrBlank()) "Pay ₹${parsed.amount}" else "Open Payment App",
+                    label = if (!parsed.amount.isNullOrBlank()) "Pay ₹${parsed.amount}" else "Pay",
                     testTag = "action_open_upi",
                     onClick = { openUri(context, parsed.rawUri, onToast) }
                 )
@@ -138,7 +146,7 @@ fun ContextActionButtons(
             is ParsedPayload.Calendar -> {
                 PrimaryActionButton(
                     icon = Icons.Outlined.CalendarToday,
-                    label = "Add to Calendar",
+                    label = "Add Event",
                     testTag = "action_add_calendar",
                     onClick = { addCalendarEvent(context, parsed.title, parsed.description, parsed.location, onToast) }
                 )
@@ -165,7 +173,7 @@ fun ContextActionButtons(
             is ParsedPayload.BarcodeProduct -> {
                 PrimaryActionButton(
                     icon = Icons.Outlined.Search,
-                    label = "Search Product Online",
+                    label = "Search Product",
                     testTag = "action_search_product",
                     onClick = { searchProduct(context, parsed.code, onToast) }
                 )
@@ -174,7 +182,7 @@ fun ContextActionButtons(
             else -> {
                 PrimaryActionButton(
                     icon = Icons.Outlined.ContentCopy,
-                    label = "Copy Content",
+                    label = "Copy",
                     testTag = "action_copy_primary",
                     onClick = {
                         clipboardManager.setText(AnnotatedString(rawContent))
@@ -218,7 +226,18 @@ fun ContextActionButtons(
                 }
             )
 
-            if (parsed is ParsedPayload.Phone) {
+            if (parsed is ParsedPayload.Wifi && parsed.password.isNotEmpty()) {
+                Spacer(modifier = Modifier.width(16.dp))
+                TertiaryActionButton(
+                    icon = Icons.Outlined.ContentCopy,
+                    label = "Copy Pass",
+                    testTag = "action_copy_wifi_pass",
+                    onClick = {
+                        clipboardManager.setText(AnnotatedString(parsed.password))
+                        onToast("Wi-Fi password copied")
+                    }
+                )
+            } else if (parsed is ParsedPayload.Phone) {
                 Spacer(modifier = Modifier.width(16.dp))
                 TertiaryActionButton(
                     icon = Icons.Outlined.PersonAdd,
@@ -472,7 +491,14 @@ private fun PrimaryActionButton(
     ) {
         Icon(imageVector = icon, contentDescription = null, modifier = Modifier.size(18.dp))
         Spacer(modifier = Modifier.width(8.dp))
-        Text(text = label, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
+        Text(
+            text = label,
+            style = MaterialTheme.typography.titleSmall,
+            fontWeight = FontWeight.SemiBold,
+            maxLines = 1,
+            softWrap = false,
+            overflow = TextOverflow.Ellipsis
+        )
     }
 }
 
@@ -500,7 +526,10 @@ private fun TertiaryActionButton(
         Text(
             text = label,
             style = MaterialTheme.typography.labelMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            maxLines = 1,
+            softWrap = false,
+            overflow = TextOverflow.Ellipsis
         )
     }
 }

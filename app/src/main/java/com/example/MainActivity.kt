@@ -82,6 +82,7 @@ class MainActivity : ComponentActivity() {
 
         // Publish top dynamic shortcuts to launcher on startup
         com.example.util.QobleyShortcutManager.updateDynamicShortcuts(this)
+        com.example.widget.QobleyWidgetUpdater.updateAllWidgets(this)
 
         val uri = intent?.data
         val isQuickScanLaunch = intent?.action == Intent.ACTION_VIEW &&
@@ -111,6 +112,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
+        setIntent(intent)
         handleIntent(intent)
     }
 

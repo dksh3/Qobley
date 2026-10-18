@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" width="100%" height="100%">
+<rect width="480" height="320" rx="32" fill="#1E293B"/>
+<text x="28" y="44" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="20" font-weight="700">Qobley Starred Favorites</text>
+<text x="380" y="44" fill="#FBBF24" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="700">STARRED</text>
+<rect x="24" y="62" width="432" height="68" rx="14" fill="#0F172A"/>
+<rect x="36" y="74" width="44" height="22" rx="5" fill="#2563EB"/>
+<text x="42" y="89" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="12" font-weight="700">PAY</text>
+<text x="92" y="88" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="16" font-weight="600">Counter UPI • Sharma Kirana</text>
+<text x="92" y="112" fill="#94A3B8" font-family="monospace" font-size="12">sharmakirana@upi</text>
+<rect x="24" y="142" width="432" height="68" rx="14" fill="#0F172A"/>
+<rect x="36" y="154" width="44" height="22" rx="5" fill="#10B981"/>
+<text x="40" y="169" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="12" font-weight="700">WIFI</text>
+<text x="92" y="168" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="16" font-weight="600">Store Guest Wi-Fi</text>
+<text x="92" y="192" fill="#94A3B8" font-family="monospace" font-size="12">SSID: CornerBakery_Guest</text>
+<rect x="24" y="222" width="432" height="68" rx="14" fill="#0F172A"/>
+<rect x="36" y="234" width="44" height="22" rx="5" fill="#D97706"/>
+<text x="42" y="249" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="12" font-weight="700">EAN</text>
+<text x="92" y="248" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="16" font-weight="600">Customer Loyalty Barcode</text>
+<text x="92" y="272" fill="#94A3B8" font-family="monospace" font-size="12">8901234567894</text>
+</svg>

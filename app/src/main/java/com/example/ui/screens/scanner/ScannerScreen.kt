@@ -120,6 +120,7 @@ fun ScannerScreen(
         }
     }
 
+    val scope = rememberCoroutineScope()
     val cameraExecutor = remember { Executors.newSingleThreadExecutor() }
 
     val analyzer = remember {
@@ -133,13 +134,23 @@ fun ScannerScreen(
                 }
             },
             onBarcodeDetected = { content, format, item ->
-                if (activeScanResult == null) {
+                if (activeScanResult == null && !analyzer.isPaused) {
                     detectedHighlight = item
                     liveMultipleDetections = null
+                    analyzer.isPaused = true
                     try {
                         haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                     } catch (_: Exception) {}
                     viewModel.handleScannedCode(content, format)
+
+                    // 2-second cooldown so detection HUD displays while instant action runs
+                    scope.launch {
+                        kotlinx.coroutines.delay(2000)
+                        if (activeScanResult == null) {
+                            detectedHighlight = null
+                            analyzer.isPaused = false
+                        }
+                    }
                 }
             }
         )
@@ -356,7 +367,9 @@ fun ScannerScreen(
                                     Text(
                                         text = detected.content,
                                         style = MaterialTheme.typography.bodyMedium,
-                                        maxLines = 2
+                                        maxLines = 1,
+                                        softWrap = false,
+                                        overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
                                     )
                                 }
                             }

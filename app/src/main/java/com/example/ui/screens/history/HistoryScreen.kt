@@ -481,7 +481,7 @@ fun HistoryScreen(
                     ) {
                         Icon(imageVector = Icons.Outlined.QrCodeScanner, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Scan a code")
+                        Text("Scan", maxLines = 1, softWrap = false)
                     }
                 }
             )

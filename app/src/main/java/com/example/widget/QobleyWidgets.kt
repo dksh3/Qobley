@@ -145,10 +145,9 @@ class QobleyMediumWidget : AppWidgetProvider() {
                 data = Uri.parse("qobley://scan")
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
             }
-            views.setOnClickPendingIntent(
-                R.id.widget_btn_scan,
-                PendingIntent.getActivity(context, 301, scanIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
-            )
+            val scanPending = PendingIntent.getActivity(context, 301, scanIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+            views.setOnClickPendingIntent(R.id.widget_btn_scan, scanPending)
+            views.setOnClickPendingIntent(R.id.widget_medium_root, scanPending)
 
             // QR -> qobley://create/qr
             val qrIntent = Intent(context, MainActivity::class.java).apply {
@@ -199,16 +198,18 @@ class QobleyLargeWidget : AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
+        val pendingResult = goAsync()
         val scope = CoroutineScope(Dispatchers.IO)
         scope.launch {
-            val db = AppDatabase.getInstance(context)
-            val recentList = try {
-                db.codeDao().getRecentSync(2)
-            } catch (_: Exception) {
-                emptyList()
-            }
+            try {
+                val db = AppDatabase.getInstance(context)
+                val recentList = try {
+                    db.codeDao().getRecentSync(2)
+                } catch (_: Exception) {
+                    emptyList()
+                }
 
-            for (appWidgetId in appWidgetIds) {
+                for (appWidgetId in appWidgetIds) {
                 val views = RemoteViews(context.packageName, R.layout.widget_large_command_center)
 
                 // Scan -> qobley://scan
@@ -217,10 +218,9 @@ class QobleyLargeWidget : AppWidgetProvider() {
                     data = Uri.parse("qobley://scan")
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
                 }
-                views.setOnClickPendingIntent(
-                    R.id.widget_btn_scan,
-                    PendingIntent.getActivity(context, 401, scanIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
-                )
+                val scanPending = PendingIntent.getActivity(context, 401, scanIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+                views.setOnClickPendingIntent(R.id.widget_btn_scan, scanPending)
+                views.setOnClickPendingIntent(R.id.widget_large_root, scanPending)
 
                 // History link -> qobley://history
                 val historyIntent = Intent(context, MainActivity::class.java).apply {
@@ -293,6 +293,14 @@ class QobleyLargeWidget : AppWidgetProvider() {
                         R.id.widget_recent_item_1,
                         PendingIntent.getActivity(context, 411, item1Intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
                     )
+                } else {
+                    views.setTextViewText(R.id.widget_recent_title_1, "No recent scans")
+                    views.setTextViewText(R.id.widget_recent_preview_1, "Tap to scan your first code")
+                    views.setTextViewText(R.id.widget_recent_type_1, "SCAN")
+                    views.setOnClickPendingIntent(
+                        R.id.widget_recent_item_1,
+                        PendingIntent.getActivity(context, 411, scanIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+                    )
                 }
 
                 // Populate recent item 2
@@ -311,12 +319,23 @@ class QobleyLargeWidget : AppWidgetProvider() {
                         R.id.widget_recent_item_2,
                         PendingIntent.getActivity(context, 412, item2Intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
                     )
+                } else {
+                    views.setTextViewText(R.id.widget_recent_title_2, "Create a code")
+                    views.setTextViewText(R.id.widget_recent_preview_2, "Tap to generate QR or Barcode")
+                    views.setTextViewText(R.id.widget_recent_type_2, "MAKE")
+                    views.setOnClickPendingIntent(
+                        R.id.widget_recent_item_2,
+                        PendingIntent.getActivity(context, 412, qrIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+                    )
                 }
 
                 appWidgetManager.updateAppWidget(appWidgetId, views)
             }
+        } finally {
+            pendingResult.finish()
         }
     }
+}
 }
 
 /**
@@ -330,16 +349,18 @@ class QobleyFavoritesWidget : AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
+        val pendingResult = goAsync()
         val scope = CoroutineScope(Dispatchers.IO)
         scope.launch {
-            val db = AppDatabase.getInstance(context)
-            val favorites = try {
-                db.codeDao().getFavoritesSync(3)
-            } catch (_: Exception) {
-                emptyList()
-            }
+            try {
+                val db = AppDatabase.getInstance(context)
+                val favorites = try {
+                    db.codeDao().getFavoritesSync(3)
+                } catch (_: Exception) {
+                    emptyList()
+                }
 
-            for (appWidgetId in appWidgetIds) {
+                for (appWidgetId in appWidgetIds) {
                 val views = RemoteViews(context.packageName, R.layout.widget_favorites)
 
                 // Header link -> qobley://saved
@@ -425,8 +446,11 @@ class QobleyFavoritesWidget : AppWidgetProvider() {
 
                 appWidgetManager.updateAppWidget(appWidgetId, views)
             }
+        } finally {
+            pendingResult.finish()
         }
     }
+}
 }
 
 /**
@@ -440,10 +464,15 @@ class QobleySingleCodeWidget : AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
+        val pendingResult = goAsync()
         val scope = CoroutineScope(Dispatchers.IO)
         scope.launch {
-            for (appWidgetId in appWidgetIds) {
-                updateSingleWidget(context, appWidgetManager, appWidgetId)
+            try {
+                for (appWidgetId in appWidgetIds) {
+                    updateSingleWidget(context, appWidgetManager, appWidgetId)
+                }
+            } finally {
+                pendingResult.finish()
             }
         }
     }
@@ -515,24 +544,37 @@ class QobleySingleCodeWidget : AppWidgetProvider() {
                 )
                 views.setOnClickPendingIntent(R.id.widget_single_btn_share, sharePending)
             } else {
-                views.setTextViewText(R.id.widget_single_title, "Qobley Pinned Code")
-                views.setTextViewText(R.id.widget_single_type, "NO CODE PINNED")
-                views.setTextViewText(R.id.widget_single_subtitle, "Tap to create or save a code in Qobley")
+                views.setTextViewText(R.id.widget_single_title, "Qobley Quick QR")
+                views.setTextViewText(R.id.widget_single_type, "QR CODE")
+                views.setTextViewText(R.id.widget_single_subtitle, "Tap to open or scan in Qobley")
 
-                val createIntent = Intent(context, MainActivity::class.java).apply {
+                // Generate crisp default QR bitmap so it's never empty!
+                val defaultQr = BarcodeGenerator.generate(
+                    formatString = "QR_CODE",
+                    content = "https://qobley.app",
+                    width = 360,
+                    height = 360,
+                    qrConfig = BarcodeGenerator.QrConfig(margin = 2)
+                )
+                if (defaultQr != null) {
+                    views.setImageViewBitmap(R.id.widget_single_qr_image, defaultQr)
+                }
+
+                val scanIntent = Intent(context, MainActivity::class.java).apply {
                     action = Intent.ACTION_VIEW
-                    data = Uri.parse("qobley://create")
+                    data = Uri.parse("qobley://scan")
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
                 }
-                val createPending = PendingIntent.getActivity(
+                val scanPending = PendingIntent.getActivity(
                     context,
                     801 + appWidgetId,
-                    createIntent,
+                    scanIntent,
                     PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
                 )
-                views.setOnClickPendingIntent(R.id.widget_single_root, createPending)
-                views.setOnClickPendingIntent(R.id.widget_single_btn_show, createPending)
-                views.setOnClickPendingIntent(R.id.widget_single_btn_share, createPending)
+                views.setOnClickPendingIntent(R.id.widget_single_root, scanPending)
+                views.setOnClickPendingIntent(R.id.widget_single_qr_image, scanPending)
+                views.setOnClickPendingIntent(R.id.widget_single_btn_show, scanPending)
+                views.setOnClickPendingIntent(R.id.widget_single_btn_share, scanPending)
             }
 
             appWidgetManager.updateAppWidget(appWidgetId, views)

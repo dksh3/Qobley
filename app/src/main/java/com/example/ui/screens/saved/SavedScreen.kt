@@ -386,13 +386,13 @@ fun SavedScreen(
                             onClick = onNavigateScan,
                             shape = RoundedCornerShape(10.dp)
                         ) {
-                            Text("Scan a code")
+                            Text("Scan", maxLines = 1, softWrap = false)
                         }
                         Button(
                             onClick = onNavigateCreate,
                             shape = RoundedCornerShape(10.dp)
                         ) {
-                            Text("Create a code")
+                            Text("Create", maxLines = 1, softWrap = false)
                         }
                     }
                 }
@@ -554,7 +554,7 @@ fun SavedScreen(
                         },
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Text("Export as CSV (.csv)")
+                        Text("Export CSV", maxLines = 1, softWrap = false)
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     OutlinedButton(
@@ -564,7 +564,7 @@ fun SavedScreen(
                         },
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Text("Export as JSON (.json)")
+                        Text("Export JSON", maxLines = 1, softWrap = false)
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     OutlinedButton(
@@ -574,7 +574,7 @@ fun SavedScreen(
                         },
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Text("Share as Formatted Text")
+                        Text("Share as Text", maxLines = 1, softWrap = false)
                     }
                 }
             },
@@ -689,7 +689,9 @@ private fun SavedCardItem(
                 text = item.preview,
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-                maxLines = 2
+                maxLines = 1,
+                softWrap = false,
+                overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
             )
 
             // Notes preview badge if attached

@@ -322,14 +322,14 @@ private fun SurfaceBottomBar(
             colors = ButtonDefaults.outlinedButtonColors(),
             modifier = Modifier.weight(1f).testTag("config_cancel_button")
         ) {
-            Text("Cancel")
+            Text("Cancel", maxLines = 1, softWrap = false)
         }
         Button(
             onClick = onConfirm,
             colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
             modifier = Modifier.weight(1f).testTag("config_confirm_button")
         ) {
-            Text("Apply Widget")
+            Text("Apply", maxLines = 1, softWrap = false)
         }
     }
 }

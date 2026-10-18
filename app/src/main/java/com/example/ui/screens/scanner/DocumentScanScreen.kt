@@ -243,7 +243,7 @@ fun DocumentScanScreen(
                         ) {
                             Icon(imageVector = Icons.Outlined.ContentCopy, contentDescription = null, modifier = Modifier.size(18.dp))
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text("Copy Text")
+                            Text("Copy", maxLines = 1, softWrap = false)
                         }
 
                         Button(
@@ -259,7 +259,7 @@ fun DocumentScanScreen(
                         ) {
                             Icon(imageVector = Icons.Outlined.Share, contentDescription = null, modifier = Modifier.size(18.dp))
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text("Share")
+                            Text("Share", maxLines = 1, softWrap = false)
                         }
                     }
                 }

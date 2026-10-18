@@ -176,9 +176,159 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         )
 
         viewModelScope.launch {
-            val id = repository.saveCode(codeItem)
-            _activeScanResult.value = codeItem.copy(id = id)
+            repository.saveCode(codeItem)
             com.example.widget.QobleyWidgetUpdater.updateAllWidgets(getApplication())
+
+            // Instantly execute primary action (Wi-Fi connect, URL open, UPI pay, Dial, etc.)
+            executeInstantScanAction(parsed, content)
+        }
+    }
+
+    private fun executeInstantScanAction(parsed: ParsedPayload, rawContent: String) {
+        val app = getApplication<Application>()
+        when (parsed) {
+            is ParsedPayload.Wifi -> {
+                com.example.util.WifiConnectHelper.connectToWifi(
+                    context = app,
+                    ssid = parsed.ssid,
+                    password = parsed.password,
+                    security = parsed.security,
+                    hidden = parsed.isHidden,
+                    onFeedback = { showToast(it) }
+                )
+            }
+            is ParsedPayload.Url -> {
+                try {
+                    val intent = android.content.Intent(android.content.Intent.ACTION_VIEW, Uri.parse(parsed.url)).apply {
+                        flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+                    }
+                    app.startActivity(intent)
+                    showToast("Opening ${parsed.domain}...")
+                } catch (_: Exception) {
+                    showToast("Could not open ${parsed.url}")
+                }
+            }
+            is ParsedPayload.Payment -> {
+                try {
+                    val intent = android.content.Intent(android.content.Intent.ACTION_VIEW, Uri.parse(parsed.rawUri)).apply {
+                        flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+                    }
+                    val chooser = android.content.Intent.createChooser(intent, "Pay with...").apply {
+                        flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+                    }
+                    app.startActivity(chooser)
+                    val amountStr = if (!parsed.amount.isNullOrBlank()) " ₹${parsed.amount}" else ""
+                    showToast("Opening payment app$amountStr...")
+                } catch (_: Exception) {
+                    showToast("No payment app found")
+                }
+            }
+            is ParsedPayload.Phone -> {
+                try {
+                    val intent = android.content.Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel:${parsed.rawNumber}")).apply {
+                        flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+                    }
+                    app.startActivity(intent)
+                    showToast("Dialing ${parsed.formattedNumber}...")
+                } catch (_: Exception) {
+                    showToast("Could not open dialer")
+                }
+            }
+            is ParsedPayload.Email -> {
+                try {
+                    val intent = android.content.Intent(android.content.Intent.ACTION_SENDTO).apply {
+                        data = Uri.parse("mailto:${parsed.email}")
+                        if (parsed.subject != null) putExtra(android.content.Intent.EXTRA_SUBJECT, parsed.subject)
+                        if (parsed.body != null) putExtra(android.content.Intent.EXTRA_TEXT, parsed.body)
+                        flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+                    }
+                    app.startActivity(intent)
+                    showToast("Opening email to ${parsed.email}...")
+                } catch (_: Exception) {
+                    showToast("Could not open email app")
+                }
+            }
+            is ParsedPayload.Sms -> {
+                try {
+                    val intent = android.content.Intent(android.content.Intent.ACTION_SENDTO).apply {
+                        data = Uri.parse("smsto:${parsed.number}")
+                        if (parsed.message != null) putExtra("sms_body", parsed.message)
+                        flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+                    }
+                    app.startActivity(intent)
+                    showToast("Opening SMS to ${parsed.number}...")
+                } catch (_: Exception) {
+                    showToast("Could not open SMS app")
+                }
+            }
+            is ParsedPayload.Geo -> {
+                try {
+                    val geoUri = if (parsed.query != null) {
+                        "geo:0,0?q=" + Uri.encode(parsed.query)
+                    } else {
+                        "geo:${parsed.latitude},${parsed.longitude}"
+                    }
+                    val intent = android.content.Intent(android.content.Intent.ACTION_VIEW, Uri.parse(geoUri)).apply {
+                        flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+                    }
+                    app.startActivity(intent)
+                    showToast("Opening map...")
+                } catch (_: Exception) {
+                    showToast("Could not open map")
+                }
+            }
+            is ParsedPayload.Contact -> {
+                try {
+                    val intent = android.content.Intent(android.content.Intent.ACTION_INSERT).apply {
+                        type = android.provider.ContactsContract.RawContacts.CONTENT_TYPE
+                        if (parsed.name.isNotEmpty()) putExtra(android.provider.ContactsContract.Intents.Insert.NAME, parsed.name)
+                        if (!parsed.phone.isNullOrEmpty()) putExtra(android.provider.ContactsContract.Intents.Insert.PHONE, parsed.phone)
+                        if (!parsed.email.isNullOrEmpty()) putExtra(android.provider.ContactsContract.Intents.Insert.EMAIL, parsed.email)
+                        flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+                    }
+                    app.startActivity(intent)
+                    showToast("Adding contact: ${parsed.name}")
+                } catch (_: Exception) {
+                    showToast("Could not open contacts app")
+                }
+            }
+            is ParsedPayload.Calendar -> {
+                try {
+                    val intent = android.content.Intent(android.content.Intent.ACTION_INSERT).apply {
+                        data = android.provider.CalendarContract.Events.CONTENT_URI
+                        putExtra(android.provider.CalendarContract.Events.TITLE, parsed.title)
+                        if (parsed.description != null) putExtra(android.provider.CalendarContract.Events.DESCRIPTION, parsed.description)
+                        if (parsed.location != null) putExtra(android.provider.CalendarContract.Events.EVENT_LOCATION, parsed.location)
+                        if (parsed.startTime != null) putExtra(android.provider.CalendarContract.EXTRA_EVENT_BEGIN_TIME, parsed.startTime)
+                        if (parsed.endTime != null) putExtra(android.provider.CalendarContract.EXTRA_EVENT_END_TIME, parsed.endTime)
+                        flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+                    }
+                    app.startActivity(intent)
+                    showToast("Adding event: ${parsed.title}")
+                } catch (_: Exception) {
+                    showToast("Could not open calendar")
+                }
+            }
+            is ParsedPayload.BarcodeProduct -> {
+                val clipManager = app.getSystemService(Context.CLIPBOARD_SERVICE) as? android.content.ClipboardManager
+                clipManager?.setPrimaryClip(android.content.ClipData.newPlainText("Barcode", parsed.code))
+                try {
+                    val searchUrl = "https://www.google.com/search?q=" + Uri.encode(parsed.code)
+                    val intent = android.content.Intent(android.content.Intent.ACTION_VIEW, Uri.parse(searchUrl)).apply {
+                        flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+                    }
+                    app.startActivity(intent)
+                    showToast("Product code copied: ${parsed.code}")
+                } catch (_: Exception) {
+                    showToast("Barcode copied: ${parsed.code}")
+                }
+            }
+            else -> {
+                val clipManager = app.getSystemService(Context.CLIPBOARD_SERVICE) as? android.content.ClipboardManager
+                clipManager?.setPrimaryClip(android.content.ClipData.newPlainText("Scanned Text", rawContent))
+                val preview = if (rawContent.length > 25) rawContent.take(25) + "..." else rawContent
+                showToast("Copied to clipboard: $preview")
+            }
         }
     }
 
@@ -259,6 +409,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             repository.toggleFavorite(item)
             val isNowFav = !item.isFavorite
+            com.example.widget.QobleyWidgetUpdater.updateAllWidgets(getApplication())
             showToast(if (isNowFav) "Added to favorites" else "Removed from favorites")
             if (_activeScanResult.value?.id == item.id) {
                 _activeScanResult.value = item.copy(isFavorite = isNowFav)
@@ -272,6 +423,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             repository.toggleSaved(item)
             val isNowSaved = !item.isSaved
+            com.example.widget.QobleyWidgetUpdater.updateAllWidgets(getApplication())
             showToast(if (isNowSaved) "Saved to Library" else "Removed from Library")
             if (_activeScanResult.value?.id == item.id) {
                 _activeScanResult.value = item.copy(isSaved = isNowSaved)
@@ -289,6 +441,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 updatedAt = System.currentTimeMillis()
             )
             repository.updateCode(updated)
+            com.example.widget.QobleyWidgetUpdater.updateAllWidgets(getApplication())
             if (_activeScanResult.value?.id == item.id) {
                 _activeScanResult.value = updated
             }
@@ -301,6 +454,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             repository.updateNotes(item.id, notes)
             val updated = item.copy(notes = notes, updatedAt = System.currentTimeMillis())
+            com.example.widget.QobleyWidgetUpdater.updateAllWidgets(getApplication())
             if (_activeScanResult.value?.id == item.id) {
                 _activeScanResult.value = updated
             }
@@ -315,6 +469,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         lastDeletedItem = item
         viewModelScope.launch {
             repository.deleteCode(item)
+            com.example.widget.QobleyWidgetUpdater.updateAllWidgets(getApplication())
             if (_activeScanResult.value?.id == item.id) {
                 _activeScanResult.value = null
             }
@@ -327,6 +482,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         val item = lastDeletedItem ?: return
         viewModelScope.launch {
             repository.saveCode(item)
+            com.example.widget.QobleyWidgetUpdater.updateAllWidgets(getApplication())
             lastDeletedItem = null
             showToast("Restored \"${item.title}\"")
         }
@@ -336,6 +492,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun deleteCode(item: CodeItem) {
         viewModelScope.launch {
             repository.deleteCode(item)
+            com.example.widget.QobleyWidgetUpdater.updateAllWidgets(getApplication())
             if (_activeScanResult.value?.id == item.id) {
                 _activeScanResult.value = null
             }
@@ -349,6 +506,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         if (ids.isEmpty()) return
         viewModelScope.launch {
             repository.deleteBatch(ids)
+            com.example.widget.QobleyWidgetUpdater.updateAllWidgets(getApplication())
             val count = ids.size
             clearSelection()
             showToast("Deleted $count items")
@@ -363,6 +521,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         triggerHapticFeedback()
         viewModelScope.launch {
             repository.setFavoriteBatch(ids, favorite)
+            com.example.widget.QobleyWidgetUpdater.updateAllWidgets(getApplication())
             val count = ids.size
             clearSelection()
             showToast(if (favorite) "Starred $count items" else "Unstarred $count items")
@@ -399,6 +558,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun clearHistory() {
         viewModelScope.launch {
             repository.clearHistory()
+            com.example.widget.QobleyWidgetUpdater.updateAllWidgets(getApplication())
             showToast("Scanned history cleared")
         }
     }

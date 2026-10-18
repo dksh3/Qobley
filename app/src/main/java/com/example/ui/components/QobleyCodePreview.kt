@@ -90,14 +90,14 @@ fun QobleyCodePreview(
         // High contrast preview card - Solid object feel with quiet border
         Surface(
             shape = RoundedCornerShape(14.dp),
-            color = Color(qrConfig.backgroundColor),
+            color = if (qrConfig.isTransparentBackground) MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.45f) else Color(qrConfig.backgroundColor),
             modifier = Modifier
                 .border(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.8f), RoundedCornerShape(14.dp))
                 .clickable {
                     clipboardManager.setText(AnnotatedString(content))
                     onToast("Content copied to clipboard")
                 }
-                .padding(horizontal = 24.dp, vertical = 20.dp)
+                .padding(horizontal = 20.dp, vertical = 18.dp)
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -108,9 +108,11 @@ fun QobleyCodePreview(
                         bitmap = bitmap.asImageBitmap(),
                         contentDescription = "Code Preview",
                         modifier = Modifier
-                            .size(
-                                width = if (is1D) 280.dp else 220.dp,
-                                height = if (is1D) 120.dp else 220.dp
+                            .sizeIn(
+                                minWidth = if (is1D) 200.dp else 180.dp,
+                                maxWidth = if (is1D) 320.dp else 240.dp,
+                                minHeight = if (is1D) 90.dp else 180.dp,
+                                maxHeight = if (is1D) 160.dp else 260.dp
                             )
                             .testTag("code_preview_image")
                     )

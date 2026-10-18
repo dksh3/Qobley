@@ -42,6 +42,7 @@ class QobleyQuickScanWidget : AppWidgetProvider() {
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
         views.setOnClickPendingIntent(R.id.widget_btn_scan, scanPending)
+        views.setOnClickPendingIntent(R.id.widget_medium_root, scanPending)
 
         // 2. Create QR button -> qobley://create/qr
         val qrIntent = Intent(context, MainActivity::class.java).apply {

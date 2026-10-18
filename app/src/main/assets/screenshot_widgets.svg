@@ -1,0 +1,311 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720" width="100%" height="100%">
+<defs>
+    <filter id="widgetShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+<rect width="1000" height="720" fill="#0F172A"/>
+<circle cx="850" cy="180" r="280" fill="#1E293B" opacity="0.6"/>
+<circle cx="150" cy="600" r="320" fill="#1E3A8A" opacity="0.25"/>
+<text x="40" y="38" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="16" font-weight="600">09:41</text>
+<text x="900" y="38" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="15" font-weight="600">100% 5G</text>
+<text x="40" y="75" fill="#38BDF8" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="700">ANDROID HOME-SCREEN WIDGET ECOSYSTEM</text>
+<g transform="translate(40, 95)" filter="url(#widgetShadow)">
+<rect width="440" height="140" rx="24" fill="#1E293B"/>
+<text x="24" y="32" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="12" font-weight="700">QOBLEY QUICK ACCESS</text>
+<rect x="20" y="44" width="400" height="42" rx="12" fill="#2563EB"/>
+<text x="140" y="71" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="16" font-weight="700">Scan Any Code</text>
+<rect x="20" y="94" width="125" height="30" rx="8" fill="#0F172A"/>
+<text x="48" y="114" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="12" font-weight="600">Create QR</text>
+<rect x="157" y="94" width="125" height="30" rx="8" fill="#0F172A"/>
+<text x="188" y="114" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="12" font-weight="600">Barcode</text>
+<rect x="295" y="94" width="125" height="30" rx="8" fill="#0F172A"/>
+<text x="328" y="114" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="12" font-weight="600">Photo</text>
+</g>
+<g transform="translate(510, 95)" filter="url(#widgetShadow)">
+<rect width="220" height="240" rx="24" fill="#1E293B"/>
+<text x="20" y="30" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="700">Sharma Kirana</text>
+<text x="20" y="48" fill="#38BDF8" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="11">UPI Pay QR</text>
+<rect x="20" y="58" width="180" height="150" rx="12" fill="#FFFFFF"/>
+<g class="qr-matrix">
+<rect x="35" y="68" width="36.4" height="36.4" fill="#000000"/>
+<rect x="40.2" y="73.2" width="26.0" height="26.0" fill="#FFFFFF"/>
+<rect x="45.4" y="78.4" width="15.600000000000001" height="15.600000000000001" fill="#000000"/>
+<rect x="128.60000000000002" y="68" width="36.4" height="36.4" fill="#000000"/>
+<rect x="133.8" y="73.2" width="26.0" height="26.0" fill="#FFFFFF"/>
+<rect x="139.00000000000003" y="78.4" width="15.600000000000001" height="15.600000000000001" fill="#000000"/>
+<rect x="35" y="161.60000000000002" width="36.4" height="36.4" fill="#000000"/>
+<rect x="40.2" y="166.8" width="26.0" height="26.0" fill="#FFFFFF"/>
+<rect x="45.4" y="172.00000000000003" width="15.600000000000001" height="15.600000000000001" fill="#000000"/>
+<rect x="76.6" y="99.2" width="5.2" height="5.2" fill="#000000"/>
+<rect x="66.2" y="109.6" width="5.2" height="5.2" fill="#000000"/>
+<rect x="87.0" y="99.2" width="5.2" height="5.2" fill="#000000"/>
+<rect x="66.2" y="120.0" width="5.2" height="5.2" fill="#000000"/>
+<rect x="97.4" y="99.2" width="5.2" height="5.2" fill="#000000"/>
+<rect x="66.2" y="130.4" width="5.2" height="5.2" fill="#000000"/>
+<rect x="107.8" y="99.2" width="5.2" height="5.2" fill="#000000"/>
+<rect x="66.2" y="140.8" width="5.2" height="5.2" fill="#000000"/>
+<rect x="118.2" y="99.2" width="5.2" height="5.2" fill="#000000"/>
+<rect x="66.2" y="151.2" width="5.2" height="5.2" fill="#000000"/>
+<rect x="118.2" y="151.2" width="26.0" height="26.0" fill="#000000"/>
+<rect x="123.4" y="156.39999999999998" width="15.600000000000001" height="15.600000000000001" fill="#FFFFFF"/>
+<rect x="128.6" y="161.6" width="5.2" height="5.2" fill="#000000"/>
+<rect x="81.80000000000001" y="68.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="87.0" y="68.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="107.8" y="68.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="113.0" y="68.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="76.6" y="73.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="81.80000000000001" y="73.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="87.0" y="73.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="102.60000000000001" y="73.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="107.8" y="73.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="87.0" y="78.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="92.2" y="78.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="97.4" y="78.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="107.8" y="78.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="113.0" y="78.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="118.2" y="78.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="81.80000000000001" y="83.6" width="5.40" height="5.40" fill="#000000"/>
+<rect x="87.0" y="83.6" width="5.40" height="5.40" fill="#000000"/>
+<rect x="92.2" y="83.6" width="5.40" height="5.40" fill="#000000"/>
+<rect x="97.4" y="83.6" width="5.40" height="5.40" fill="#000000"/>
+<rect x="102.60000000000001" y="83.6" width="5.40" height="5.40" fill="#000000"/>
+<rect x="113.0" y="83.6" width="5.40" height="5.40" fill="#000000"/>
+<rect x="118.2" y="83.6" width="5.40" height="5.40" fill="#000000"/>
+<rect x="81.80000000000001" y="88.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="87.0" y="88.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="92.2" y="88.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="97.4" y="88.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="102.60000000000001" y="88.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="113.0" y="88.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="87.0" y="94.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="92.2" y="94.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="97.4" y="94.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="102.60000000000001" y="94.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="107.8" y="94.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="113.0" y="94.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="118.2" y="94.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="76.6" y="104.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="87.0" y="104.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="92.2" y="104.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="97.4" y="104.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="102.60000000000001" y="104.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="113.0" y="104.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="35.0" y="109.6" width="5.40" height="5.40" fill="#000000"/>
+<rect x="40.2" y="109.6" width="5.40" height="5.40" fill="#000000"/>
+<rect x="45.4" y="109.6" width="5.40" height="5.40" fill="#000000"/>
+<rect x="55.8" y="109.6" width="5.40" height="5.40" fill="#000000"/>
+<rect x="76.6" y="109.6" width="5.40" height="5.40" fill="#000000"/>
+<rect x="102.60000000000001" y="109.6" width="5.40" height="5.40" fill="#000000"/>
+<rect x="113.0" y="109.6" width="5.40" height="5.40" fill="#000000"/>
+<rect x="118.2" y="109.6" width="5.40" height="5.40" fill="#000000"/>
+<rect x="128.60000000000002" y="109.6" width="5.40" height="5.40" fill="#000000"/>
+<rect x="133.8" y="109.6" width="5.40" height="5.40" fill="#000000"/>
+<rect x="139.0" y="109.6" width="5.40" height="5.40" fill="#000000"/>
+<rect x="154.60000000000002" y="109.6" width="5.40" height="5.40" fill="#000000"/>
+<rect x="159.8" y="109.6" width="5.40" height="5.40" fill="#000000"/>
+<rect x="40.2" y="114.80000000000001" width="5.40" height="5.40" fill="#000000"/>
+<rect x="45.4" y="114.80000000000001" width="5.40" height="5.40" fill="#000000"/>
+<rect x="50.6" y="114.80000000000001" width="5.40" height="5.40" fill="#000000"/>
+<rect x="55.8" y="114.80000000000001" width="5.40" height="5.40" fill="#000000"/>
+<rect x="76.6" y="114.80000000000001" width="5.40" height="5.40" fill="#000000"/>
+<rect x="81.80000000000001" y="114.80000000000001" width="5.40" height="5.40" fill="#000000"/>
+<rect x="102.60000000000001" y="114.80000000000001" width="5.40" height="5.40" fill="#000000"/>
+<rect x="107.8" y="114.80000000000001" width="5.40" height="5.40" fill="#000000"/>
+<rect x="113.0" y="114.80000000000001" width="5.40" height="5.40" fill="#000000"/>
+<rect x="123.4" y="114.80000000000001" width="5.40" height="5.40" fill="#000000"/>
+<rect x="133.8" y="114.80000000000001" width="5.40" height="5.40" fill="#000000"/>
+<rect x="139.0" y="114.80000000000001" width="5.40" height="5.40" fill="#000000"/>
+<rect x="149.4" y="114.80000000000001" width="5.40" height="5.40" fill="#000000"/>
+<rect x="35.0" y="120.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="40.2" y="120.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="45.4" y="120.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="55.8" y="120.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="71.4" y="120.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="87.0" y="120.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="92.2" y="120.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="102.60000000000001" y="120.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="107.8" y="120.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="118.2" y="120.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="128.60000000000002" y="120.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="133.8" y="120.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="139.0" y="120.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="154.60000000000002" y="120.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="159.8" y="120.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="35.0" y="125.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="40.2" y="125.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="55.8" y="125.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="71.4" y="125.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="87.0" y="125.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="113.0" y="125.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="118.2" y="125.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="128.60000000000002" y="125.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="144.2" y="125.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="149.4" y="125.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="154.60000000000002" y="125.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="159.8" y="125.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="35.0" y="130.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="55.8" y="130.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="71.4" y="130.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="113.0" y="130.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="118.2" y="130.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="149.4" y="130.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="154.60000000000002" y="130.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="159.8" y="130.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="40.2" y="135.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="45.4" y="135.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="55.8" y="135.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="76.6" y="135.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="81.80000000000001" y="135.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="87.0" y="135.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="97.4" y="135.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="102.60000000000001" y="135.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="107.8" y="135.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="113.0" y="135.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="118.2" y="135.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="128.60000000000002" y="135.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="154.60000000000002" y="135.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="35.0" y="140.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="45.4" y="140.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="71.4" y="140.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="76.6" y="140.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="81.80000000000001" y="140.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="87.0" y="140.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="97.4" y="140.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="107.8" y="140.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="118.2" y="140.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="123.4" y="140.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="144.2" y="140.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="149.4" y="140.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="50.6" y="146.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="55.8" y="146.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="61.0" y="146.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="71.4" y="146.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="76.6" y="146.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="81.80000000000001" y="146.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="87.0" y="146.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="92.2" y="146.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="97.4" y="146.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="107.8" y="146.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="113.0" y="146.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="123.4" y="146.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="139.0" y="146.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="149.4" y="146.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="159.8" y="146.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="35.0" y="151.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="55.8" y="151.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="76.6" y="151.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="81.80000000000001" y="151.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="87.0" y="151.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="92.2" y="151.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="102.60000000000001" y="151.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="107.8" y="151.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="144.2" y="151.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="154.60000000000002" y="151.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="76.6" y="156.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="107.8" y="156.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="144.2" y="156.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="149.4" y="156.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="87.0" y="161.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="92.2" y="161.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="97.4" y="161.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="102.60000000000001" y="161.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="154.60000000000002" y="161.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="159.8" y="161.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="76.6" y="166.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="92.2" y="166.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="107.8" y="166.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="113.0" y="166.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="144.2" y="166.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="154.60000000000002" y="166.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="76.6" y="172.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="81.80000000000001" y="172.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="87.0" y="172.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="97.4" y="172.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="107.8" y="172.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="144.2" y="172.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="149.4" y="172.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="159.8" y="172.0" width="5.40" height="5.40" fill="#000000"/>
+<rect x="76.6" y="177.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="87.0" y="177.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="97.4" y="177.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="107.8" y="177.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="118.2" y="177.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="128.60000000000002" y="177.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="139.0" y="177.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="144.2" y="177.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="149.4" y="177.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="159.8" y="177.2" width="5.40" height="5.40" fill="#000000"/>
+<rect x="87.0" y="182.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="92.2" y="182.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="102.60000000000001" y="182.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="118.2" y="182.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="123.4" y="182.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="133.8" y="182.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="144.2" y="182.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="154.60000000000002" y="182.4" width="5.40" height="5.40" fill="#000000"/>
+<rect x="81.80000000000001" y="187.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="87.0" y="187.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="97.4" y="187.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="102.60000000000001" y="187.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="133.8" y="187.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="144.2" y="187.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="149.4" y="187.60000000000002" width="5.40" height="5.40" fill="#000000"/>
+<rect x="76.6" y="192.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="81.80000000000001" y="192.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="92.2" y="192.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="97.4" y="192.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="107.8" y="192.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="113.0" y="192.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="118.2" y="192.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="123.4" y="192.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="154.60000000000002" y="192.8" width="5.40" height="5.40" fill="#000000"/>
+<rect x="159.8" y="192.8" width="5.40" height="5.40" fill="#000000"/>
+</g>
+<text x="32" y="224" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="10">Customers scan from home screen</text>
+</g>
+<g transform="translate(760, 95)" filter="url(#widgetShadow)">
+<rect width="200" height="140" rx="24" fill="#1E293B"/>
+<rect x="20" y="20" width="160" height="100" rx="16" fill="#2563EB"/>
+<path d="M90 45v6h-6v-6h6m3-3h-12v12h12v-12zm12 3v6h-6v-6h6m3-3h-12v12h12v-12zm-15 15v6h-6v-6h6m3-3h-12v12h12v-12z" fill="#FFFFFF"/>
+<text x="60" y="100" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="15" font-weight="700">Quick Scan</text>
+</g>
+<g transform="translate(40, 260)" filter="url(#widgetShadow)">
+<rect width="440" height="200" rx="24" fill="#1E293B"/>
+<text x="24" y="32" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="700">Qobley Starred Favorites</text>
+<text x="350" y="32" fill="#FBBF24" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="11" font-weight="700">STARRED</text>
+<rect x="20" y="44" width="400" height="42" rx="10" fill="#0F172A"/>
+<rect x="28" y="52" width="34" height="18" rx="4" fill="#2563EB"/>
+<text x="32" y="65" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="10" font-weight="700">PAY</text>
+<text x="72" y="64" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="600">Counter UPI • Sharma Kirana</text>
+<text x="72" y="78" fill="#94A3B8" font-family="monospace" font-size="10">sharmakirana@upi</text>
+<rect x="20" y="94" width="400" height="42" rx="10" fill="#0F172A"/>
+<rect x="28" y="102" width="34" height="18" rx="4" fill="#10B981"/>
+<text x="31" y="115" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="10" font-weight="700">WIFI</text>
+<text x="72" y="114" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="600">Store Guest Wi-Fi</text>
+<text x="72" y="128" fill="#94A3B8" font-family="monospace" font-size="10">SSID: CornerBakery_Guest</text>
+<rect x="20" y="144" width="400" height="42" rx="10" fill="#0F172A"/>
+<rect x="28" y="152" width="34" height="18" rx="4" fill="#D97706"/>
+<text x="32" y="165" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="10" font-weight="700">EAN</text>
+<text x="72" y="164" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="600">Customer Loyalty Barcode</text>
+<text x="72" y="178" fill="#94A3B8" font-family="monospace" font-size="10">8901234567894</text>
+</g>
+<g transform="translate(40, 480)" filter="url(#widgetShadow)">
+<rect width="920" height="210" rx="24" fill="#1E293B"/>
+<text x="24" y="32" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="12" font-weight="700">COMMAND CENTER</text>
+<rect x="20" y="44" width="880" height="42" rx="12" fill="#2563EB"/>
+<text x="380" y="71" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="16" font-weight="700">Scan Any Barcode or QR Code</text>
+<text x="24" y="106" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="11" font-weight="700">RECENT ON-DEVICE SCANS</text>
+<rect x="20" y="116" width="430" height="48" rx="10" fill="#0F172A"/>
+<rect x="30" y="126" width="36" height="18" rx="4" fill="#2563EB"/>
+<text x="35" y="139" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="10" font-weight="700">PAY</text>
+<text x="76" y="138" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="600">Sharma Kirana Store</text>
+<text x="76" y="154" fill="#94A3B8" font-family="monospace" font-size="10">upi://pay?pa=sharmakirana@upi&amp;am=150.00</text>
+<rect x="470" y="116" width="430" height="48" rx="10" fill="#0F172A"/>
+<rect x="480" y="126" width="36" height="18" rx="4" fill="#10B981"/>
+<text x="483" y="139" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="10" font-weight="700">WIFI</text>
+<text x="526" y="138" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="600">Corner Bakery Guest Wi-Fi</text>
+<text x="526" y="154" fill="#94A3B8" font-family="monospace" font-size="10">WIFI:S:CornerBakery_Guest;T:WPA;P:FreshBakes2026;;</text>
+<text x="24" y="192" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="11">Data stored securely in local Room SQLite database • Zero external transmission</text>
+</g>
+</svg>

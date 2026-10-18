@@ -263,7 +263,7 @@ fun BatchScanScreen(
                             },
                             modifier = Modifier.fillMaxWidth()
                         ) {
-                            Text("Export as CSV (.csv)")
+                            Text("CSV (.csv)", maxLines = 1, softWrap = false)
                         }
                         androidx.compose.material3.TextButton(
                             onClick = {
@@ -272,7 +272,7 @@ fun BatchScanScreen(
                             },
                             modifier = Modifier.fillMaxWidth()
                         ) {
-                            Text("Export as Plain Text (.txt)")
+                            Text("Plain Text (.txt)", maxLines = 1, softWrap = false)
                         }
                         androidx.compose.material3.TextButton(
                             onClick = {
@@ -281,14 +281,14 @@ fun BatchScanScreen(
                             },
                             modifier = Modifier.fillMaxWidth()
                         ) {
-                            Text("Export as JSON (.json)")
+                            Text("JSON (.json)", maxLines = 1, softWrap = false)
                         }
                     }
                 },
                 confirmButton = {},
                 dismissButton = {
                     androidx.compose.material3.TextButton(onClick = { showExportDialog = false }) {
-                        Text("Cancel")
+                        Text("Cancel", maxLines = 1, softWrap = false)
                     }
                 }
             )
@@ -308,7 +308,7 @@ fun BatchScanScreen(
                 ) {
                     Icon(imageVector = Icons.Outlined.FileDownload, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(6.dp))
-                    Text("Export")
+                    Text("Export", maxLines = 1, softWrap = false)
                 }
 
                 Button(
@@ -325,7 +325,7 @@ fun BatchScanScreen(
                 ) {
                     Icon(imageVector = Icons.Outlined.Check, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(6.dp))
-                    Text("Save & Finish")
+                    Text("Save", maxLines = 1, softWrap = false)
                 }
             }
         }
